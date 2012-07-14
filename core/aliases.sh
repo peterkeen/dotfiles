@@ -2,8 +2,8 @@ alias ea='$EDITOR ~/dotfiles/core/aliases.sh && . ~/dotfiles/core/aliases.sh && 
 
 alias ls='ls -lh'
 alias sl='ls -lh'
-alias e='~/bin/emacsclient-nt.sh'
-alias es='~/bin/emacsclient-nt-sudo.sh'
-alias et='~/bin/emacsclient-t.sh'
-alias vi='~/bin/emacsclient-nt.sh'
-alias vim='~/bin/emacsclient-nt.sh'
+alias e='emacsclient-nt.sh'
+alias es='emacsclient-nt-sudo.sh'
+alias et='emacsclient-t.sh'
+alias vi='emacsclient-nt.sh'
+alias vim='emacsclient-nt.sh'
