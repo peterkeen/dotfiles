@@ -1,0 +1,28 @@
+# export PROMPT_COMMAND="$HOME/dotfiles/check_for_update"
+
+# pushd ~/dotfiles > /dev/null
+# git pull --quiet origin master
+# ./build.pl
+# popd > /dev/null
+
+if [[ -f /etc/bashrc ]]; then
+    . /etc/bashrc
+fi    
+
+if [[ -L $HOME/.bashrc.local ]] && [[ -f `readlink $HOME/.bashrc.local` ]]; then
+    . $HOME/.bashrc.local
+fi
+
+for module in `cat ~/.modules`; do
+    module_init_path=$HOME/dotfiles/$module/init.sh
+    if [[ -e $module_init_path ]]; then
+	. $module_init_path
+    fi
+    PATH=$PATH:$HOME/dotfiles/$module/bin
+done
+
+export TERM=xterm-256color
+
+umask 0002
+mesg n
+

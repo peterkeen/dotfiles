@@ -1,0 +1,3 @@
+#!/usr/local/bin/perl58 -w
+
+system("/dp/usr/pak/bin/emacsclient", "-t", "-c", shift);
