@@ -22,6 +22,20 @@
 
 (defalias 'unfuck-this-buffer 'toggle-input-method)
 
+(defvar prev-frame-height)
+(defvar prev-frame-width)
+(defun embiggen-font ()
+  (interactive)
+  (setq prev-frame-height (frame-height))
+  (setq prev-frame-width (frame-width))
+  (set-face-attribute 'default' nil :height 200))
+
+(defun recromulate-font ()
+  (interactive)
+  (set-face-attribute 'default' nil :height 140)
+  (set-frame-width nil prev-frame-width)
+  (set-frame-height nil prev-frame-height))
+
 (defun core-init ()
   (require 'pcomplete)
   (require 'uniquify)
@@ -49,8 +63,13 @@
 
   (put 'narrow-to-region 'disabled nil)
 
+  (global-set-key "\C-cfb" 'embiggen-font)
+  (global-set-key "\C-cfr" 'recromulate-font)
+
   (with-current-buffer "*scratch*"
     (setq emacs-lock-from-exiting 1)))
+
+
 
 (add-hook 'pre-init-hook (lambda()
   (setq start-time (current-time)) ; for M-x uptime
