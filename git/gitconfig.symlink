@@ -1,0 +1,49 @@
+[user]
+	name = Pete Keen
+	email = peter.keen@bugsplat.info
+
+[alias]
+    alias = "!sh -c '[ $# = 2 ] && git config --global alias.\"$1\" \"$2\" && exit 0 || echo \"usage: git alias <new alias> <original command>\" >&2 && exit 1' -"
+    ci = commit -a
+    co = checkout
+    stat = status
+	new = !git checkout master && git checkout -b $1
+    cur = !git current
+    bstat = !git branch-status
+    lg = "log --pretty=format:'%C(yellow)%h%Creset %s %Cblue%d%Creset' --graph"
+    review = "log --stat -p -w --patience --reverse -M -C -C --cc"
+    mfc = "merge --no-ff --no-commit"
+
+[diff]
+    color = auto
+
+[pager]
+    color = true
+
+[Status]
+    color = auto
+[rerere]
+	enabled = true
+[merge]
+	summary = true
+	log = false
+[core]
+    sharedRepository = group
+    compression = 9
+    preloadindex = true
+	excludesfile = /Users/pkeen/.gitignore
+[gc]
+    pruneExpire = 6 months ago
+    aggressiveWindow = 20
+[pack]
+    window = 20
+    compression = 9
+    threads = 0
+[status]
+	submodulesummary = true
+[color]
+	ui = auto
+[pullme]
+	upstream = upstream
+	open = true
+	personal = origin
