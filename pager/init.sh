@@ -1,3 +1,1 @@
-export PAGER='emacspager.pl
-
-. ./aliases.sh
+export PAGER='emacspager.pl'
