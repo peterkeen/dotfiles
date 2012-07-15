@@ -1,7 +1,15 @@
 require 'rake'
 
+task :setup_modules do
+  modules_path = File.join(ENV['HOME'], ".modules")
+  if ! File.exists(modules_path)
+    `cp modules_template #{modules_path}`
+    puts "Minimal modules template has been copied to #{modules_path}."
+  end
+end
+
 desc "Hook our dotfiles into system-standard positions."
-task :install do
+task :install => :setup_modules do
   linkables = Dir.glob('*/**{.symlink}')
 
   skip_all = false
