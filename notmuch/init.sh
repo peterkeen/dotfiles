@@ -7,3 +7,6 @@ __notmuch_count ()
         fi
     fi
 }
+
+
+alias m='$EDITOR -e "(inbox)"'
