@@ -3,14 +3,19 @@ require 'rake'
 task :setup_modules do
   modules_path = File.join(ENV['HOME'], ".modules")
   if ! File.exists(modules_path)
-    `cp modules_template #{modules_path}`
+    `cp core/modules_template #{modules_path}`
     puts "Minimal modules template has been copied to #{modules_path}."
   end
 end
 
 desc "Hook our dotfiles into system-standard positions."
 task :install => :setup_modules do
-  linkables = Dir.glob('*/**{.symlink}')
+
+  modules = File.read("#{ENV['HOME'}/.modules").split("\n")
+  linkables = []
+  modules.each do |m|
+    linkables += Dir.glob(File.join(m, "*.symlink"))
+  end
 
   skip_all = false
   overwrite_all = false
@@ -44,7 +49,13 @@ end
 
 task :uninstall do
 
-  Dir.glob('**/*.symlink').each do |linkable|
+  modules = File.read("#{ENV['HOME'}/.modules").split("\n")
+  linkables = []
+  modules.each do |m|
+    linkables += Dir.glob(File.join(m, "*.symlink"))
+  end
+
+  linkables.each do |linkable|
 
     file = linkable.split('/').last.split('.symlink').last
     target = "#{ENV["HOME"]}/.#{file}"
