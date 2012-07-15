@@ -1,1 +1,1 @@
-export PS1=export PS1='$(__git_ps1 "(%s) ")\[\e[0;32m\]\u@\h\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\n\$\[\e[m\] '
+export PS1=export PS1='$(__notmuch_count "tag:inbox")$(__git_ps1 "(%s) ")\[\e[0;32m\]\u@\h\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\n\$\[\e[m\] '

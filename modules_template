@@ -3,4 +3,5 @@ theme
 git
 pager
 markdown
+notmuch
 shell
