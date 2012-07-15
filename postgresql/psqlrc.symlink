@@ -1,0 +1,5 @@
+\set AUTOCOMMIT off
+\set ON_ERROR_ROLLBACK on
+\set ON_ERROR_STOP on
+\timing
+
