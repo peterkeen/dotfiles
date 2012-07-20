@@ -1,3 +1,5 @@
+;-*-lisp-*-
+
 (defun require-el-get (package)
   "Add a package to el-get-sources"
   (add-to-list 'el-get-sources package))
@@ -13,29 +15,33 @@
     (insert-file-contents path)
     (split-string (buffer-string) "\n" t)))
 
-(setq el-get-sources '(el-get))
-(setq el-get-packages '())
-(setq el-get-dir "~/.el-get/")
+(defun re-initialize-modules ()
+  (interactive)
+  (setq el-get-sources '(el-get))
+  (setq el-get-packages '())
+  (setq el-get-dir "~/.el-get/")
 
-(setq module-list (read-lines "~/.modules"))
+  (setq module-list (read-lines "~/.modules"))
 
-(dolist (module module-list)
-  (let ((module-init-file (format "~/dotfiles/%s/init.el" module)))
-    (if (file-exists-p module-init-file)
-	(load module-init-file))))
+  (dolist (module module-list)
+    (let ((module-init-file (format "~/dotfiles/%s/init.el" module)))
+      (if (file-exists-p module-init-file)
+          (load module-init-file))))
 
-; Set up the dotfiles path
-(setq user-emacs-directory "~/dotfiles/core/")
-(add-to-list 'load-path user-emacs-directory)
+  ; Set up the dotfiles path
+  (setq user-emacs-directory "~/dotfiles/core/")
+  (add-to-list 'load-path user-emacs-directory)
 
-; Customization messes with init.el by default
-(setq custom-file (concat user-emacs-directory "customization.el"))
-(load custom-file 'noerror)
+  ; Customization messes with init.el by default
+  (setq custom-file (concat user-emacs-directory "customization.el"))
+  (load custom-file 'noerror)
 
-(run-hooks 'pre-init-hook)
+  (run-hooks 'pre-init-hook)
 
-; el-get goes into .el-get so packages won't pollute this directory
+  ; el-get goes into .el-get so packages won't pollute this directory
 
-(load (concat user-emacs-directory "getelget.el"))
+  (load (concat user-emacs-directory "getelget.el"))
 
-(run-hooks 'post-init-hook)
+  (run-hooks 'post-init-hook))
+
+(re-initialize-modules)
