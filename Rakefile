@@ -20,9 +20,9 @@ task :show_differences do
   left = left.to_i
   right = right.to_i
   if right == 0 && left != 0
-    puts "Dotfiles behind by #{left} and can be fast forwarded"
+    puts "Dotfiles behind by #{left} commit(s) and can be fast forwarded"
   elsif right != 0 && left == 0
-    puts "Dotfiles ahead by #{right} and can be fast forwarded"
+    puts "Dotfiles ahead by #{right} commit(s) and can be fast forwarded"
   elsif right != 0 && left != 0
     puts "Dotfiles diverged from master, by #{right} and #{left} respectively."
   end
