@@ -13,12 +13,21 @@ task :update do
   `git fetch origin`
 end
 
-desc "Show differences between origin and master"
-task :show_differences do
+def change_counts
   diff = `git rev-list --left-right --count origin/master...master`
+  dirty = `git diff-files`.chomp
   left, right = diff.split("\t")
   left = left.to_i
   right = right.to_i
+
+  return left, right, dirty
+end
+
+desc "Show differences between origin and master, loudly"
+task :show_differences_loud do
+
+  left, right, dirty = change_counts
+
   if right == 0 && left != 0
     puts "Dotfiles behind by #{left} commit(s) and can be fast forwarded"
   elsif right != 0 && left == 0
@@ -26,7 +35,29 @@ task :show_differences do
   elsif right != 0 && left != 0
     puts "Dotfiles diverged from master, by #{right} and #{left} respectively."
   end
+  if dirty
+    puts "Dotfiles have uncommitted changes"
+  end
+end
 
+desc "Show differences in a way that can be incorporated into a bash prompt"
+task :show_differences_stat do
+  left, right, dirty = change_counts
+
+  stat = ""
+  if left == 0 && right != 0
+    stat = "+#{right}"
+  elsif left != 0 && right == 0
+    stat = "-#{right}"
+  elsif left != 0 && right != 0
+    stat = "#{left},#{right}"
+  end
+  if dirty
+    stat = "**#{stat}"
+  end
+  if stat != ""
+    puts "[#{stat}] "
+  end
 end
 
 desc "Hook our dotfiles into system-standard positions."
