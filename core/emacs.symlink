@@ -10,6 +10,12 @@
 (defvar post-init-hook '()
   "Run after el-get packages are installed")
 
+(defun pre-init (func)
+  (add-hook 'pre-init-hook func t))
+
+(defun post-init (func)
+  (add-hook 'post-init-hook func t))
+
 (defun read-lines (path)
   (with-temp-buffer
     (insert-file-contents path)
