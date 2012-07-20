@@ -15,7 +15,7 @@ end
 
 def change_counts
   diff = `git rev-list --left-right --count origin/master...master`
-  dirty = `git diff-files`.chomp
+  dirty = `git diff-files`.chomp.length
   left, right = diff.split("\t")
   left = left.to_i
   right = right.to_i
@@ -35,7 +35,7 @@ task :show_differences_loud do
   elsif right != 0 && left != 0
     puts "Dotfiles diverged from master, by #{right} and #{left} respectively."
   end
-  if dirty
+  if dirty != 0
     puts "Dotfiles have uncommitted changes"
   end
 end
@@ -52,7 +52,7 @@ task :show_differences_stat do
   elsif left != 0 && right != 0
     stat = "#{left},#{right}"
   end
-  if dirty
+  if dirty != 0
     stat = "**#{stat}"
   end
   if stat != ""
