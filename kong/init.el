@@ -19,7 +19,7 @@
 
 (defun kong-run-test-file (file)
   (interactive "MTest File: ")
-  (compile (format "ssh kongdev 'cd /k/kongregate/current && exec ruby %s'" file)))
+  (compile (format "ssh kongdev 'export LC_ALL=en_US.UTF-8 && cd /k/kongregate/current && exec ruby %s'" file)))
 
 (defun kong-run-current-test-file ()
   (interactive)
@@ -27,7 +27,7 @@
 
 (defun kong-run-test-at-point ()
   (interactive)
-  (compile (format "ssh kongdev 'cd /k/kongregate/current && exec ruby %s -n %s'" (kong-current-relative-file-name) (rinari-test-function-name))))
+  (compile (format "ssh kongdev 'export LC_ALL=en_US.UTF-8 && cd /k/kongregate/current && exec ruby %s -n %s'" (kong-current-relative-file-name) (rinari-test-function-name))))
 
 (defun kong-current-relative-file-name ()
   (file-relative-name (buffer-file-name) (getenv "KONGROOT")))
@@ -54,4 +54,8 @@
 
   (setq smtpmail-auth-credentials "/Users/pkeen/.authinfo")
   (setq starttls-gnutls-program "/usr/local/bin/gnutls-cli")
+
+  (setq notmuch-show-all-multipart/alternative-parts nil)
+
+  (color-theme-solarized-dark)
 ))
