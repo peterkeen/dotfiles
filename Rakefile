@@ -8,6 +8,27 @@ task :setup_modules do
   end
 end
 
+desc "Update the git repository from origin"
+task :update do
+  `git fetch origin`
+end
+
+desc "Show differences between origin and master"
+task :show_differences do
+  diff = `git rev-list --left-right --count origin/master...master`
+  left, right = diff.split("\t")
+  left = left.to_i
+  right = right.to_i
+  if right == 0 && left != 0
+    puts "Dotfiles behind by #{left} and can be fast forwarded"
+  elsif right != 0 && left == 0
+    puts "Dotfiles ahead by #{right} and can be fast forwarded"
+  elsif right != 0 && left != 0
+    puts "Dotfiles diverged from master, by #{right} and #{left} respectively."
+  end
+
+end
+
 desc "Hook our dotfiles into system-standard positions."
 task :install => :setup_modules do
 
