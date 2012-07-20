@@ -74,12 +74,12 @@
 
 
 
-(add-hook 'pre-init-hook (lambda()
+(pre-init (lambda()
   (setq start-time (current-time)) ; for M-x uptime
   (setq visual-bell t)
   (setq ns-command-modifier 'meta) ; this is *super important*
 ))
   
-(add-hook 'post-init-hook 'core-init)
+(post-init 'core-init)
 
 

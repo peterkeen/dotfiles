@@ -39,7 +39,7 @@
 (defun growl-compilation-result(buffer msg)
   (growl msg))
 
-(add-hook 'post-init-hook (lambda ()
+(post-init (lambda ()
   (add-to-list 'compilation-finish-functions 'growl-compilation-result)
   (set-face-font 'default "Meslo LG L DZ 14")
   (setenv "KONGROOT" "/Users/pkeen/devel/kongregate")

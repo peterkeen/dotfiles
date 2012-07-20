@@ -8,5 +8,5 @@
   (interactive)
   (notmuch-search "tag:inbox"))
 
-(add-hook 'post-init-hook (lambda ()
+(post-init (lambda ()
   (setq notmuch-command "/usr/local/bin/notmuch")))

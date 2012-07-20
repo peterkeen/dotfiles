@@ -12,4 +12,4 @@
   (day))
 
 
-(add-hook 'post-init-hook 'theme-init)
+(post-init 'theme-init)

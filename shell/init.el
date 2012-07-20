@@ -43,4 +43,4 @@
   (setq multi-term-program "/bin/bash")
   (server-start))
 
-(add-hook 'post-init-hook 'term-stuff-init)
+(post-init 'term-stuff-init)

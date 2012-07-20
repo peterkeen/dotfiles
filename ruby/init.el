@@ -6,7 +6,7 @@
 (require-el-get 'textmate)
 (require-el-get 'yaml-mode)
 
-(add-hook 'post-init-hook (lambda()
+(post-init (lambda()
   (autoload 'ruby-mode "ruby-mode" nil t)
   (add-to-list 'auto-mode-alist '("Capfile" . ruby-mode))
   (add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
