@@ -4,6 +4,9 @@
 
 (require 'cl)
 
+(defalias 'qrr 'query-replace-regexp)
+(defalias 'sir 'string-insert-rectangle)
+
 (defun duration (time)
   "Takes in a time-value and returns the number of seconds since
    the epoch that value represents."
@@ -71,12 +74,12 @@
 
 
 
-(add-hook 'pre-init-hook (lambda()
+(pre-init (lambda()
   (setq start-time (current-time)) ; for M-x uptime
   (setq visual-bell t)
   (setq ns-command-modifier 'meta) ; this is *super important*
 ))
   
-(add-hook 'post-init-hook 'core-init)
+(post-init 'core-init)
 
 

@@ -2,16 +2,68 @@ require 'rake'
 
 task :setup_modules do
   modules_path = File.join(ENV['HOME'], ".modules")
-  if ! File.exists(modules_path)
+  if ! File.exists?(modules_path)
     `cp core/modules_template #{modules_path}`
     puts "Minimal modules template has been copied to #{modules_path}."
+  end
+end
+
+desc "Update the git repository from origin"
+task :update do
+  `git fetch origin`
+end
+
+def change_counts
+  diff = `git rev-list --left-right --count origin/master...master`
+  dirty = `git diff-files`.chomp.length
+  left, right = diff.split("\t")
+  left = left.to_i
+  right = right.to_i
+
+  return left, right, dirty
+end
+
+desc "Show differences between origin and master, loudly"
+task :show_differences_loud do
+
+  left, right, dirty = change_counts
+
+  if right == 0 && left != 0
+    puts "Dotfiles behind by #{left} commit(s) and can be fast forwarded"
+  elsif right != 0 && left == 0
+    puts "Dotfiles ahead by #{right} commit(s) and can be fast forwarded"
+  elsif right != 0 && left != 0
+    puts "Dotfiles diverged from master, by #{right} and #{left} respectively."
+  end
+  if dirty != 0
+    puts "Dotfiles have uncommitted changes"
+  end
+end
+
+desc "Show differences in a way that can be incorporated into a bash prompt"
+task :show_differences_stat do
+  left, right, dirty = change_counts
+
+  stat = ""
+  if left == 0 && right != 0
+    stat = "+#{right}"
+  elsif left != 0 && right == 0
+    stat = "-#{right}"
+  elsif left != 0 && right != 0
+    stat = "#{left},#{right}"
+  end
+  if dirty != 0
+    stat = "**#{stat}"
+  end
+  if stat != ""
+    puts "[#{stat}] "
   end
 end
 
 desc "Hook our dotfiles into system-standard positions."
 task :install => :setup_modules do
 
-  modules = File.read("#{ENV['HOME'}/.modules").split("\n")
+  modules = File.read("#{ENV['HOME']}/.modules").split("\n")
   linkables = []
   modules.each do |m|
     linkables += Dir.glob(File.join(m, "*.symlink"))
@@ -49,7 +101,7 @@ end
 
 task :uninstall do
 
-  modules = File.read("#{ENV['HOME'}/.modules").split("\n")
+  modules = File.read("#{ENV['HOME']}/.modules").split("\n")
   linkables = []
   modules.each do |m|
     linkables += Dir.glob(File.join(m, "*.symlink"))
