@@ -1,4 +1,3 @@
-(require-el-get 'emacs-lock+)
 (require-el-get 'undo-tree)
 (require-el-get 'evil)
 
@@ -69,6 +68,8 @@
   (global-set-key "\C-cfb" 'embiggen-font)
   (global-set-key "\C-cfr" 'recromulate-font)
 
+  (load "./emacs-lock+")
+
   (with-current-buffer "*scratch*"
     (setq emacs-lock-from-exiting 1)))
 
@@ -81,5 +82,3 @@
 ))
   
 (post-init 'core-init)
-
-

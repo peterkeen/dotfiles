@@ -5,7 +5,7 @@ export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
 __dotfiles_status ()
 {
-    printf "%s" `rake -f ~/dotfiles/Rakefile show_differences_stat`
+    printf "%s " `cd ~/dotfiles && rake show_differences_stat`
 }
 
 . ~/dotfiles/core/aliases.sh
