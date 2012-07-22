@@ -10,7 +10,8 @@ end
 
 desc "Update the git repository from origin"
 task :update do
-  `git fetch origin`
+  cur = File.dirname(__FILE__)
+  `cd #{cur} && git fetch origin`
 end
 
 def change_counts
