@@ -1,0 +1,1 @@
+(require-el-get 'go-mode)
