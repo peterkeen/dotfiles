@@ -52,6 +52,10 @@
         mail-host-address "pkeen.kongregate.com"
         smtpmail-local-domain "kongregate.com")
 
+  (define-key rinari-minor-mode-map "\C-c." 'kong-run-test-at-point)
+  (define-key rinari-minor-mode-map "\C-ct" 'kong-run-current-test-file)
+  (define-key rinari-minor-mode-map "\C-cr" 'recompile)
+
   (setq smtpmail-auth-credentials "/Users/pkeen/.authinfo")
   (setq starttls-gnutls-program "/usr/local/bin/gnutls-cli")
 
