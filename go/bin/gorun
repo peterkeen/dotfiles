@@ -3,7 +3,14 @@
 set -e
 
 scriptname=$1
+
+if [[ $scriptname == "" ]]; then
+    echo "usage: gorun scriptname"
+    exit 1
+fi
+
 shift
+
 base=`basename $scriptname`
 sha=`shasum $scriptname | awk '{print \$1}'`
 target=~/.gorun/$base-$sha
