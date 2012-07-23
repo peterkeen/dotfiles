@@ -1,0 +1,21 @@
+#!/bin/sh
+
+set -e
+
+scriptname=$1
+shift
+base=`basename $scriptname`
+sha=`shasum $scriptname | awk '{print \$1}'`
+target=~/.gorun/$base-$sha
+
+if [[ -e $target ]]; then
+    exec $target $@
+fi
+
+mkdir -p ~/.gorun
+tail +2 $scriptname > ~/.gorun/$base-$sha.go
+
+go build -o $target ~/.gorun/$base-$sha.go
+
+exec $target $@
+
