@@ -49,7 +49,7 @@ task :show_differences_stat do
   if left == 0 && right != 0
     stat = "+#{right}"
   elsif left != 0 && right == 0
-    stat = "-#{right}"
+    stat = "-#{left}"
   elsif left != 0 && right != 0
     stat = "#{left},#{right}"
   end
