@@ -1,8 +1,7 @@
 (defun kong-test-server ()
   (interactive)
-  (remote-shell-command
-   "kongdev"
-   "bash -c \"export LC_ALL='en_US.UTF-8' && cd /k/kongregate/current && exec script/test_server\""
+  (multi-term-shell-command
+   "ssh -t kongdev bash -c \"export LC_ALL='en_US.UTF-8' && cd /k/kongregate/current && exec script/test_server\""
    "*test-server*"))
 
 (defun kong-console ()
