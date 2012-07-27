@@ -67,6 +67,7 @@
 
   (global-set-key "\C-cfb" 'embiggen-font)
   (global-set-key "\C-cfr" 'recromulate-font)
+  (global-set-key "\C-cfp" 'find-file-at-point)
 
   (load "./emacs-lock+")
 
