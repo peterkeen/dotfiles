@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -e
+set -x
+
+branch=$1
+server=$2
+
+if [[ $branch == "" || $server == "" ]]; then
+    echo Usage: git-qa BRANCH SERVER
+    exit 1
+fi
+
+if [[ $branch == "HEAD" ]]; then
+    branch=`git symbolic-ref --short HEAD`
+fi
+
+git checkout qa_review
+git fetch origin
+git reset --hard origin/qa_review
+git merge $branch
+git push origin qa_review
+cap ${server}_deploy
