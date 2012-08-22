@@ -15,6 +15,7 @@ if [[ $branch == "HEAD" ]]; then
     branch=`git symbolic-ref --short HEAD`
 fi
 
+git push origin $branch
 git checkout qa_review
 git fetch origin
 git reset --hard origin/qa_review
