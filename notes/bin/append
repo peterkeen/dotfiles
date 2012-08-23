@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'httparty'
+require 'net/netrc'
+require 'tempfile'
+
+note_id = ARGV[0]
+unless note_id
+  $stderr.puts("usage: append [note_id]")
+  exit 1
+end
+
+class Notes
+  include HTTParty
+  base_uri 'https://notes.bugsplat.info'
+
+  def initialize(user, pass)
+    self.class.basic_auth user, pass
+  end
+
+  def append(id, body)
+    self.class.post("/notes/#{id}/append.json", :body => { :body => body } )
+  end
+end
+
+rc = Net::Netrc.locate('notes.bugsplat.info') or raise ".netrc missing"
+
+temp = Tempfile.new('journal')
+system(ENV['EDITOR'], temp.path)
+body = temp.read
+
+puts Notes.new(rc.login, rc.password).append(ARGV[0], body)
