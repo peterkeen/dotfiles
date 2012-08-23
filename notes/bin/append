@@ -37,4 +37,4 @@ if body.strip == ""
   exit 0
 end
 
-puts Notes.new(rc.login, rc.password).append(note_id, body)
+Notes.new(rc.login, rc.password).append(note_id, body)
