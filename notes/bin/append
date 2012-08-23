@@ -28,7 +28,7 @@ rc = Net::Netrc.locate('notes.bugsplat.info') or raise ".netrc missing"
 
 body = ARGV.join(" ")
 if body.strip == ""
-  temp = Tempfile.new('journal')
+  temp = Tempfile.new(['journal', '.md'])
   system(ENV['EDITOR'], temp.path)
   body = temp.read
 end
