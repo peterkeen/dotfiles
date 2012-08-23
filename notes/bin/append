@@ -5,9 +5,9 @@ require 'httparty'
 require 'net/netrc'
 require 'tempfile'
 
-note_id = ARGV[0]
+note_id = ARGV.shift
 unless note_id
-  $stderr.puts("usage: append [note_id]")
+  $stderr.puts("usage: append [note_id] [message]")
   exit 1
 end
 
@@ -26,8 +26,15 @@ end
 
 rc = Net::Netrc.locate('notes.bugsplat.info') or raise ".netrc missing"
 
-temp = Tempfile.new('journal')
-system(ENV['EDITOR'], temp.path)
-body = temp.read
+body = ARGV.join(" ")
+if body.strip == ""
+  temp = Tempfile.new('journal')
+  system(ENV['EDITOR'], temp.path)
+  body = temp.read
+end
 
-puts Notes.new(rc.login, rc.password).append(ARGV[0], body)
+if body.strip == ""
+  exit 0
+end
+
+puts Notes.new(rc.login, rc.password).append(note_id, body)
