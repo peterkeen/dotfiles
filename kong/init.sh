@@ -7,3 +7,5 @@ export SHOW_NOTMUCH_INBOX_COUNT=true
 if [[ -f $HOME/.kongpass ]]; then
     . ~/.kongpass
 fi
+
+alias j="append 139"
