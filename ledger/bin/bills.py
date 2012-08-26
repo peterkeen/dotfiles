@@ -40,6 +40,7 @@ for line in output.split("\n"):
 lines.insert(0, 52 * "-")
 lines.insert(0, "".join([ljust("Date      Payee", 30), rjust("Amount", 10), rjust("Total", 12)]))
 
+amount = lines[-2][40:].replace(' ', '').replace('$', '')
 
 tempname = mkstemp()[1]
 
@@ -106,9 +107,10 @@ html = """
 %s
 </pre>
 <p>%s</p>
+<a href="https://venmo.com/pete-keen?txn=pay&amount=%s&note=Rent">Click to pay with Venmo</a>
 </body>
 </html>
-""" % ("\n".join(lines), message.replace("\n", "<br>"))
+""" % ("\n".join(lines), message.replace("\n", "<br>"), amount)
 msg.attach(MIMEText(text, 'text'))
 msg.attach(MIMEText(html, 'html'))
 
