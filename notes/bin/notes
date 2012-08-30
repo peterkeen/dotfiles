@@ -31,14 +31,14 @@ class NotesCLI < Thor
 id:      #{note['id']}
 created: #{note['created_at']}
 updated: #{note['updated_at']}
----
 
 #{note['body'].delete("\C-M")}
 """
-    
-    IO.popen(ENV['PAGER'], "w") do |pipe|
-      pipe << body
-    end
+
+    temp = Tempfile.new(["notes", ".md"])
+    temp.write body
+    temp.flush
+    system(ENV['PAGER'], temp.path)
   end
 
   desc "edit ID", "Edit the given note in the editor"
@@ -51,11 +51,10 @@ updated: #{note['updated_at']}
 id:      #{note['id']}
 created: #{note['created_at']}
 updated: #{note['updated_at']}
----
 
 #{note['body'].delete("\C-M")}
 """
-    temp = Tempfile.new("note")
+    temp = Tempfile.new(["note", ".md"])
     temp.write body
     temp.flush
 
@@ -64,7 +63,7 @@ updated: #{note['updated_at']}
     temp.rewind
     contents = temp.read
 
-    headers, body = contents.split(/\n---\n\n/)
+    headers, body = contents.split(/\n\n/, 2)
 
     Notes.new.update(id, body)
   end
@@ -87,6 +86,8 @@ updated: #{note['updated_at']}
 
     Notes.new.append(id, body)
   end
+
+  default_task :list
 
 end
 
