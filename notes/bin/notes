@@ -1,0 +1,93 @@
+#!/usr/bin/env ruby
+
+$:.unshift(File.expand_path(File.join(__FILE__, "../../lib")))
+require 'rubygems'
+require 'thor'
+require 'notes'
+require 'open3'
+
+class NotesCLI < Thor
+
+  include Thor::Actions
+
+  desc "list", "List all notes"
+  def list
+    Notes.new.all.sort_by{ |n| n['updated_at'] }.reverse.each do |note|
+      puts "#{note['id'].to_s.rjust(4)} #{note['updated_at'][0,10]} #{note['title']}"
+    end
+  end
+
+  desc "search QUERY", "List all notes matching a given query"
+  def search(query)
+    Notes.new.search(query).sort_by{|n|n['updated_at']}.reverse.each do |note|
+      puts "#{note['id'].to_s.rjust(4)} #{note['updated_at'][0,10]} #{note['title']}"
+    end
+  end
+
+  desc "show ID", "Show the given note in the pager"
+  def show(id)
+    note = Notes.new.get(id)
+    body = """title:   #{note['title']}
+id:      #{note['id']}
+created: #{note['created_at']}
+updated: #{note['updated_at']}
+---
+
+#{note['body'].delete("\C-M")}
+"""
+    
+    IO.popen(ENV['PAGER'], "w") do |pipe|
+      pipe << body
+    end
+  end
+
+  desc "edit ID", "Edit the given note in the editor"
+  def edit(id)
+    note = Notes.new.get(id)
+    if note.nil?
+      raise Thor::Error.new "Unknown note id #{id}"
+    end
+    body = """title:   #{note['title']}
+id:      #{note['id']}
+created: #{note['created_at']}
+updated: #{note['updated_at']}
+---
+
+#{note['body'].delete("\C-M")}
+"""
+    temp = Tempfile.new("note")
+    temp.write body
+    temp.flush
+
+    system("#{ENV['EDITOR']} #{temp.path}")
+
+    temp.rewind
+    contents = temp.read
+
+    headers, body = contents.split(/\n---\n\n/)
+
+    Notes.new.update(id, body)
+  end
+
+  desc "append ID", "Append to the given note"
+  def append(*args)
+    id = args.shift
+    raise Thor::Error.new "Expected an id" unless id
+
+    body = args.join(" ")
+    if body.strip == ""
+      temp = Tempfile.new(['journal', '.md'])
+      system(ENV['EDITOR'], temp.path)
+      body = temp.read
+    end
+
+    if body.strip == ""
+      exit 0
+    end
+
+    Notes.new.append(id, body)
+  end
+
+end
+
+NotesCLI.start

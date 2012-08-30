@@ -30,6 +30,6 @@ class Notes
   end
 
   def update(id, body)
-    self.class.put("/notes/#{id}.json", :body => {:note => body})
+    puts self.class.put("/notes/#{id}.json", :body => {:note => {:body => body}}).parsed_response
   end
 end
