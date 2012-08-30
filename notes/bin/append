@@ -1,23 +1,3 @@
-#!/usr/bin/env ruby
+#!/bin/sh
 
-$:.unshift(File.expand_path(File.join(__FILE__, "../../lib")))
-require 'tempfile'
-require 'notes'
-
-note_id = ARGV.shift
-unless note_id
-  $stderr.puts("usage: append [note_id] [message]")
-  exit 1
-end
-body = ARGV.join(" ")
-if body.strip == ""
-  temp = Tempfile.new(['journal', '.md'])
-  system(ENV['EDITOR'], temp.path)
-  body = temp.read
-end
-
-if body.strip == ""
-  exit 0
-end
-
-Notes.new.append(note_id, body)
+notes append $@
