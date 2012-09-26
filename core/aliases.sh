@@ -7,3 +7,4 @@ alias es='emacsclient-nt-sudo.sh'
 alias et='emacsclient-t.sh'
 alias vi='emacsclient-nt.sh'
 alias vim='emacsclient-nt.sh'
+alias marginalia="rvm system do marginalia"
