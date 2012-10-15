@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -e
+set -x
+
+target=$1
+source=$2
+
+if [[ $target == "" || $source = "" ]]; then
+    echo Usage: git-pr TARGET SOURCE
+    exit 1
+fi
+
+git fetch origin
+git checkout $target
+git reset --hard origin/$target
+git merge origin/$source
+
+echo Next step: "git push origin $target && git push origin :$source"
