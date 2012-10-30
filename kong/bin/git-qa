@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env rvm-shell
 
 set -e
 set -x
@@ -11,15 +11,13 @@ if [[ $branch == "" || $server == "" ]]; then
     exit 1
 fi
 
-if [[ $branch == "HEAD" ]]; then
-    branch=`git symbolic-ref --short HEAD`
-fi
-
+export SKIP_MARGINALIA_LOGGING=1
 git push origin $branch
 git checkout qa_review
 git fetch origin
 git reset --hard origin/qa_review
 git merge $branch
 git push origin qa_review
-~/.rvm/rubies/ruby-1.9.1-p431/bin/ruby ~/.rvm/gems/ruby-1.9.1-p431/gems/capistrano-2.13.3/bin/cap ${server}_deploy
-rvm system do marginalia append 401 deployed $branch to $server
+#marginalia append 401 deployed $branch to $server &
+cap ${server}_deploy
+git checkout $branch
