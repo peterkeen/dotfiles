@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+if ARGV[0]
+  story = ARGV[0]
+else
+  branch = `git symbolic-ref -q HEAD`
+  stories = branch.scan(/(\d{8,})/)
+  if stories.length == 0
+    puts "No valid story found?"
+    exit 1
+  end
+  story = stories[0][0]
+end
+
+system("open https://www.pivotaltracker.com/story/show/#{story}")
