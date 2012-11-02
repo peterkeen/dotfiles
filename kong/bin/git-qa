@@ -1,4 +1,4 @@
-#!/usr/bin/env rvm-shell
+#!/usr/bin/env bash
 
 set -e
 set -x
@@ -18,6 +18,6 @@ git fetch origin
 git reset --hard origin/qa_review
 git merge $branch
 git push origin qa_review
-#marginalia append 401 deployed $branch to $server &
+marginalia append 401 deployed $branch to $server &
 cap ${server}_deploy
 git checkout $branch
