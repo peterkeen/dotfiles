@@ -8,4 +8,4 @@ if [[ -f $HOME/.kongpass ]]; then
     . ~/.kongpass
 fi
 
-alias j="append 139"
+alias s="open-story"

@@ -1,6 +1,5 @@
 (require-el-get 'ruby-mode)
 (require-el-get 'inf-ruby)
-(require-el-get 'rvm)
 (require-el-get 'rinari)
 (require-el-get 'rhtml-mode)
 (require-el-get 'textmate)
@@ -33,5 +32,7 @@
   (add-hook 'css-mode-hook '(lambda ()
                               (setq css-indent-level 2)
                               (setq css-indent-offset 2)))
-  (rvm-use-default)
+
+  (setenv "PATH" (concat (getenv "HOME") "/.rbenv/shims:" (getenv "HOME") "/.rbenv/bin:" (getenv "PATH")))
+  (setq exec-path (cons (concat (getenv "HOME") "/.rbenv/shims") (cons (concat (getenv "HOME") "/.rbenv/bin") exec-path)))
 ))
