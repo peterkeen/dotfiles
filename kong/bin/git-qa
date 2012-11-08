@@ -11,6 +11,10 @@ if [[ $branch == "" || $server == "" ]]; then
     exit 1
 fi
 
+if [[ $branch == "HEAD" ]]; then
+    branch=`git name-rev --name-only HEAD`
+fi
+
 export SKIP_MARGINALIA_LOGGING=1
 git push origin $branch
 git checkout qa_review
