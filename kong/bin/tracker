@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'httparty'
+
+class Tracker
+  include HTTParty
+  base_uri "https://www.pivotaltracker.com/services/v3"
+
+  def initialize
+    @token = File.open("#{ENV['HOME']}/.pt_token") do |f|
+      f.read
+    end
+  end
+
+  def story(story_id)
+    options = { :headers => {'X-TrackerToken' => @token} }
+    self.class.get("/projects/1058/stories/#{story_id}", options).parsed_response
+  end
+
+  def slug(story_id)
+    story_info = story(story_id)
+    title = story_info["story"]["name"].gsub(/\s+/, '-').downcase.gsub(/[^a-z0-9-]/, '')
+    "#{story_info['story']['id']}-#{title}"
+  end
+
+end
+
+story_id = ARGV[0]
+method = ARGV[1]
+
+tracker = Tracker.new
+if tracker.respond_to?(method.to_sym)
+  print tracker.send(method.to_sym, story_id)
+else
+  print tracker.story(story_id)["story"][method]
+end

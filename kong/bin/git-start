@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+story_num=$1
+slug=`tracker $story_num slug`
+
+git stash
+git checkout master
+git fetch origin && git reset --hard origin/master
+git checkout -b $slug origin/master
