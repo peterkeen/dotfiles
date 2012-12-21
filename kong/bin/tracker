@@ -20,7 +20,11 @@ class Tracker
 
   def slug(story_id)
     story_info = story(story_id)
-    title = story_info["story"]["name"].gsub(/\s+/, '-').downcase.gsub(/[^a-z0-9-]/, '')
+    title = story_info["story"]["name"].
+      gsub(/\bthe\b/, '').
+      gsub(/\s+/, '-').
+      downcase.
+      gsub(/[^a-z0-9-]/, '')[0,60]
     "#{story_info['story']['id']}-#{title}"
   end
 

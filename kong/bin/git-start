@@ -8,4 +8,4 @@ slug=`tracker $story_num slug`
 git stash
 git checkout master
 git fetch origin && git reset --hard origin/master
-git checkout -b $slug origin/master
+git checkout $slug || git checkout -b $slug origin/master
