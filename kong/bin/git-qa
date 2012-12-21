@@ -22,6 +22,6 @@ git fetch origin
 git reset --hard origin/qa_review
 git merge $branch
 git push origin qa_review
-marginalia append 401 deployed $branch to $server &
+marginalia dataappend 401 type=deploy branch=$branch server=$server &
 cap ${server}_deploy
 git checkout $branch
