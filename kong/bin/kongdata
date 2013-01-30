@@ -1,0 +1,78 @@
+#!/usr/bin/env ruby
+
+require 'marginalia-io'
+require 'redcarpet'
+require 'json'
+require 'time'
+require 'optparse'
+
+class ExtractDataBlocks < Redcarpet::Render::Base
+  attr_reader :data_blocks
+
+  DATE_REGEX = /@(\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d)/
+
+  def block_code(code, language)
+    @data_blocks ||= []
+
+    if language == 'data'
+      data = JSON.parse(code)
+      data['date'] = @current_date
+      @data_blocks << data
+    end
+    code
+  end
+
+  def paragraph(text)
+    if text.match(DATE_REGEX)
+      @current_date = DateTime.parse($1)
+    end
+    text
+  end
+end
+
+options = {'date' => 'all'}
+OptionParser.new do |opts|
+  opts.banner = "Usage: kongdata [options]"
+
+  opts.on("-d", "--date [DATE]", "Specific date to show") do |date|
+    options['date'] = date
+  end
+end.parse!
+
+
+api = Marginalia::IO::API.new
+body = api.get(401).parsed_response['body']
+
+renderer = ExtractDataBlocks.new
+markdown = Redcarpet::Markdown.new(renderer, :fenced_code_blocks => true)
+markdown.render(body)
+
+data = renderer.data_blocks
+
+yesterday = Time.now.utc.to_date - 1
+dates = data.map { |d| d['date'].to_date }.uniq
+today = dates[-1]
+yesterday = dates[-2]
+
+if options['date'] == 'today'
+  selected = data.select { |d| d['date'].to_date == today }
+elsif options['date'] == 'yesterday'
+  selected = data.select { |d| d['date'].to_date == yesterday }
+elsif options['date'] == 'all'
+  selected = data
+else
+  date = Date.parse(options['date'])
+  selected = data.select { |d| d['date'].to_date == date }
+end
+
+selected.each do |d|
+  case d['type']
+  when 'checkout'
+    puts "#{d['date'].to_s} - checkout #{d['branch']}"
+  when 'deploy'
+    puts "#{d['date'].to_s} - deploy #{d['branch']} to #{d['server']}"
+  else
+    puts "#{d['date'].to_s} - #{d['type']}: #{d}"
+  end
+end
+

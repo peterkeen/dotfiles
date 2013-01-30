@@ -9,3 +9,5 @@ if [[ -f $HOME/.kongpass ]]; then
 fi
 
 alias s="open-story"
+alias today="kongdata -d today"
+alias yesterday="kongdata -d yesterday"
