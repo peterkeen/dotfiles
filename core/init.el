@@ -78,7 +78,7 @@
 
 (pre-init (lambda()
   (setq start-time (current-time)) ; for M-x uptime
-  (setq visual-bell t)
+  (setq ring-bell-function (lambda () (message "*beep*")))
   (setq ns-command-modifier 'meta) ; this is *super important*
 ))
   
