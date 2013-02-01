@@ -1,7 +1,11 @@
 (require-el-get
- '(:name ledger
-         :type http
-         :url "https://raw.github.com/jwiegley/ledger/next/lisp/ledger.el"))
+ '(:name ledger-new
+         :type git
+         :options ("xzf")
+         :load-path ("lisp")
+         :url "https://github.com/ledger/ledger.git"
+         :autoloads nil))
 
 (post-init (lambda ()
+    (load "~/.el-get/ledger-new/lisp/ldg-new")
     (setenv "LEDGER_FILE" "~/financials/ledger.txt")))
