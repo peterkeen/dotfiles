@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -e
+
+review_branch=$1
+
+if [[ $review_branch == "" ]]; then
+    echo "Usage: git set-review-branch BRANCH"
+    exit 1
+fi
+
+branch=`git name-rev --name-only HEAD`
+
+git config branch.$branch.review-branch $review_branch
+
+echo Review branch set to $review_branch

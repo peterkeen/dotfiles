@@ -3,9 +3,30 @@
 set -e
 
 story_num=$1
+merge_branch=$2
+review_branch=$3
+
+if [[ $story_num == "" ]]; then
+    echo "Usage: git start STORY_NUMBER [MERGE_BRANCH] [REVIEW_BRANCH]"
+fi
+
+if [[ $merge_branch == "" ]]; then
+    merge_branch="master"
+fi
+
+if [[ $review_branch == "" ]]; then
+    if [[ $merge_branch == "master" ]]; then
+        review_branch="qa_review"
+    else
+        review_branch="${merge_branch}_review"
+    fi
+fi
+
 slug=`tracker $story_num slug`
 
 git stash
-git checkout master
-git fetch origin && git reset --hard origin/master
-git checkout $slug || git checkout -b $slug origin/master
+git checkout $merge_branch
+git fetch origin && git reset --hard origin/$merge_branch
+git checkout $slug 2>/dev/null || git checkout -b $slug origin/$merge_branch
+git config branch.$slug.merge $merge_branch
+git config branch.$slug.review-branch $review_branch

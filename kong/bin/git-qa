@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 set -e
-set -x
 
 branch=$1
 server=$2
@@ -15,13 +14,26 @@ if [[ $branch == "HEAD" ]]; then
     branch=`git name-rev --name-only HEAD`
 fi
 
+review_branch=`git config branch.$branch.review-branch 2>/dev/null; true`
+if [[ $review_branch == "" ]]; then
+    review_branch="qa_review"
+fi
+
+echo "Going to do the following:"
+echo "    push $branch to origin"
+echo "    merge $branch into $review_branch"
+echo "    push $review_branch to origin"
+echo "    deploy $review_branch to $server"
+echo "If this is ok, hit enter. Otherwise, ctrl-c"
+read
+
 export SKIP_MARGINALIA_LOGGING=1
 git push origin $branch
-git checkout qa_review
+git checkout $review_branch
 git fetch origin
-git reset --hard origin/qa_review
+git reset --hard origin/$review_branch
 git merge $branch
-git push origin qa_review
+git push origin $review_branch
 marginalia dataappend 401 type=deploy branch=$branch server=$server &
 cap ${server}_deploy
 git checkout $branch
