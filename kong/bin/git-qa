@@ -20,9 +20,7 @@ if [[ $review_branch == "" ]]; then
 fi
 
 echo "Going to do the following:"
-echo "    push $branch to origin"
 echo "    merge $branch into $review_branch"
-echo "    push $review_branch to origin"
 echo "    deploy $review_branch to $server"
 echo "If this is ok, hit enter. Otherwise, ctrl-c"
 read
