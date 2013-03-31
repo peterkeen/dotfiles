@@ -4,6 +4,10 @@
    "ssh -t kongdev bash -c \"export LC_ALL='en_US.UTF-8' && cd /k/kongregate/current && exec script/test_server\""
    "*test-server*"))
 
+(defun kong-start-zeus ()
+  (interactive)
+  (ansi-term "/Users/pkeen/dotfiles/kong/bin/zeus-start" "*zeus*"))
+
 (defun kong-console ()
   (interactive)
   (remote-shell-command
@@ -18,7 +22,7 @@
 
 (defun kong-run-test-file (file)
   (interactive "MTest File: ")
-  (compile (format "ssh kongdev 'export LC_ALL=en_US.UTF-8 && cd /k/kongregate/current && exec ruby %s'" file)))
+  (compile (format "ssh kongdev 'export LC_ALL=en_US.UTF-8 && cd /k/kongregate/current && exec zeus t %s'" file)))
 
 (defun kong-run-current-test-file ()
   (interactive)
@@ -26,7 +30,7 @@
 
 (defun kong-run-test-at-point ()
   (interactive)
-  (compile (format "ssh kongdev 'export LC_ALL=en_US.UTF-8 && cd /k/kongregate/current && exec ruby %s -n %s'" (kong-current-relative-file-name) (rinari-test-function-name))))
+  (compile (format "ssh kongdev 'export LC_ALL=en_US.UTF-8 && cd /k/kongregate/current && exec zeus t %s -n %s'" (kong-current-relative-file-name) (rinari-test-function-name))))
 
 (defun kong-current-relative-file-name ()
   (file-relative-name (buffer-file-name) (getenv "KONGROOT")))
