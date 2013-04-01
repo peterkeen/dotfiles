@@ -1,3 +1,10 @@
+(defun ledger-db ()
+  (interactive)
+  (let ((sql-database "ledger")
+        (sql-server "lionel.local")
+        (sql-user "ledger"))
+    (sql-postgres)))
+
 (require-el-get
  '(:name ledger-new
          :type git
@@ -9,3 +16,4 @@
 (post-init (lambda ()
     (load "~/.el-get/ledger-new/lisp/ldg-new")
     (setenv "LEDGER_FILE" "~/financials/ledger.txt")))
+
