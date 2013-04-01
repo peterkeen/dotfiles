@@ -16,4 +16,5 @@ git checkout $target
 git reset --hard origin/$target
 git merge origin/$source
 
-echo Next step: "git push origin $target && git push origin :$source"
+
+echo Next step: "git push origin $target && git push origin :$source && echo '$PWD $target $source' | konglog PULLREQUEST"
