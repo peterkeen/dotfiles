@@ -2,4 +2,4 @@
 
 msg=`git log -1 --pretty=oneline HEAD`
 branch=`git rev-parse --abbrev-ref HEAD`
-echo "$PWD $branch $msg" | konglog HOOK
+echo "$PWD $branch $msg" | konglog COMMIT
