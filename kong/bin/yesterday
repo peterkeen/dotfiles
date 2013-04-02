@@ -13,14 +13,12 @@ end
 today = dates.keys.sort[-1]
 yesterday = dates.keys.sort[-2]
 
-requested_date = ARGV[0]
+requested_date = ARGV[0] || 'yesterday'
 
 if requested_date == 'today'
   requested_date = today
 elsif requested_date == 'yesterday'
   requested_date = yesterday
 end
-
-requested_date ||= "NOSUCHDATE"
 
 exec "grep #{requested_date} ~/.konglog"
