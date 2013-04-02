@@ -10,3 +10,11 @@ fi
 
 alias s="open-story"
 alias today="yesterday today"
+
+function y {
+    yesterday | awk '{print $3}' | grep -v master | sort -u
+}
+
+function t {
+    yesterday today | awk '{print $3}' | grep -v master | sort -u
+}
