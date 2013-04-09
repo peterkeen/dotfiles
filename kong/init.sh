@@ -18,3 +18,7 @@ function y {
 function t {
     yesterday today | awk '{print $3}' | grep -v master | sort -u
 }
+
+function d {
+    grep '\[DEPLOY\]' ~/.konglog
+}
