@@ -10,6 +10,7 @@ fi
 
 alias s="open-story"
 alias today="yesterday today"
+alias summary="kong-summary.rb"
 
 function y {
     yesterday | awk '{print $3}' | grep -v master | sort -u
