@@ -21,7 +21,7 @@ Detail
 
 Mail.new do
   to 'pete@bugsplat.info'
-  from 'pkeen@kongregate.com'
+  from 'pkeenatkongregate@bugsplat.info'
   subject "Summary for #{date}"
   body textbody
   delivery_method :smtp, {
