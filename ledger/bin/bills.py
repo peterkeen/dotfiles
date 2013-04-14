@@ -85,7 +85,7 @@ raw_input("Press ENTER to send this or ctrl-c to quit")
 username = ""
 password = ""
 
-with open("/Users/peter/.gmail") as f:
+with open("/Users/peter/.bills_credentials") as f:
     username = f.readline().strip()
     password = f.readline().strip()
 
@@ -107,19 +107,18 @@ html = """
 %s
 </pre>
 <p>%s</p>
-<a href="https://venmo.com/pete-keen?txn=pay&amount=%s&note=Rent">Click to pay with Venmo</a>
 </body>
 </html>
-""" % ("\n".join(lines), message.replace("\n", "<br>"), amount)
+""" % ("\n".join(lines), message.replace("\n", "<br>"))
 msg.attach(MIMEText(text, 'text'))
 msg.attach(MIMEText(html, 'html'))
 
-s = SMTP('smtp.gmail.com', 587)
+s = SMTP('smtp.mandrillapp.com', 587)
 s.ehlo()
 s.starttls()
 s.ehlo()
 s.login(username, password)
-s.sendmail(from_addr, to_addr, msg.as_string())
+s.sendmail(from_addr, [to_addr, 'pete@bugsplat.info'], msg.as_string())
 
 s.quit()
 
