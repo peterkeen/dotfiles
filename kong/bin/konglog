@@ -1,0 +1,18 @@
+#!/usr/bin/ruby
+
+require 'time'
+
+tag = ARGV[0]
+unless tag && tag != ""
+  STDERR.puts "usage: konglog TAG"
+  exit 1
+end
+
+TIME_FORMAT = "%Y-%m-%dT%H:%M:%S"
+
+File.open("#{ENV['HOME']}/.konglog", "a+") do |f|
+  STDIN.each do |line|
+    now = Time.now.strftime(TIME_FORMAT)
+    f.puts "[#{now}][#{tag}] #{line}"
+  end
+end

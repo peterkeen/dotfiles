@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+filename = ARGV[0]
+source = ARGV[1]
+
+exit 0 if source == "merge"
+
+contents = File.read(filename)
+
+exit(0) if contents.match(/^\[/)
+
+branch = `git symbolic-ref -q HEAD`
+
+exit(1) if not branch
+
+stories = branch.scan(/(\d{8,})/)
+
+if stories.length > 0
+  contents = stories.map { |s| "[##{s[0]}]" }.join('') + " " + contents
+  File.open(filename, "w+") do |f|
+    f.write(contents)
+  end
+else
+  exit 0
+end

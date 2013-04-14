@@ -1,0 +1,24 @@
+#!/usr/bin/ruby
+
+file = "#{ENV['HOME']}/.konglog"
+
+dates = Hash.new(0)
+
+File.open(file) do |f|
+  f.each do |line|
+    dates[line[1,10]] += 1
+  end
+end
+
+today = dates.keys.sort[-1]
+yesterday = dates.keys.sort[-2]
+
+requested_date = ARGV[0] || 'yesterday'
+
+if requested_date == 'today'
+  requested_date = today
+elsif requested_date == 'yesterday'
+  requested_date = yesterday
+end
+
+exec "grep #{requested_date} ~/.konglog"

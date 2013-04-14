@@ -32,6 +32,7 @@ git fetch origin
 git reset --hard origin/$review_branch
 git merge $branch
 git push origin $review_branch
+echo "$PWD $branch $server" | konglog DEPLOY
 marginalia dataappend 401 type=deploy branch=$branch server=$server &
 cap ${server}_deploy
 git checkout $branch
