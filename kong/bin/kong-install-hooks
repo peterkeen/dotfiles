@@ -1,0 +1,19 @@
+#!/bin/sh
+
+if [[ ! -d .git ]]; then
+    echo "Run this in a git directory"
+    exit 1
+fi
+
+function link_hook {
+    hook=$1
+    source="$HOME/dotfiles/kong/bin/$hook-hook"
+    [[ -h .git/hooks/$hook ]] && unlink .git/hooks/$hook
+    [[ -f .git/hooks/$hook ]] && mv .git/hooks/$hook .git/hooks/$hook-old
+    echo "linking $hook"
+    ln -s $source .git/hooks/$hook
+}
+
+link_hook 'post-commit'
+link_hook 'prepare-commit-msg'
+link_hook 'post-checkout'
