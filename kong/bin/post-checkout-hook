@@ -4,11 +4,10 @@ old_rev=$1
 new_rev=$2
 branch_checkout=$3
 
-if [[ $branch_checkout == "0" || $SKIP_MARGINALIA_LOGGING == "1" ]]; then
+if [[ $branch_checkout == "0" ]]; then
     exit 0
 fi
 
 new_branch=`git rev-parse --abbrev-ref HEAD`
 
 echo "$PWD $new_branch" | konglog CHECKOUT
-marginalia dataappend 401 type=checkout branch=$new_branch &
