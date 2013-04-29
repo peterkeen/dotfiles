@@ -1,5 +1,7 @@
 require 'rake'
 
+Dir.glob('*/*.rake').each { |r| import r }
+
 task :setup_modules do
   modules_path = File.join(ENV['HOME'], ".modules")
   if ! File.exists?(modules_path)
