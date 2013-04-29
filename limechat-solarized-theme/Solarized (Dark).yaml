@@ -1,0 +1,56 @@
+##------------------------------------------------------
+##  A LimeChat theme by Tad Thorley.
+##  Modified by Kenneth Vestergaard.
+##------------------------------------------------------
+log-view:
+  nickname-format: '%n '
+  scroller-highlight-color: '#859900'
+  
+input-text:
+  font-family: 'Lucida Grande'
+  font-size: 12.0
+  background-color: '#002B36'
+  color: '#93A1A1'
+  selected:
+    background-color: '#073642'
+    
+member-list:
+  font-family: 'Lucida Grande'
+  font-size: 11.0
+  color: '#93A1A1'
+  background-color: '#002B36'
+  operator:
+    color: '#CB4B16'
+  selected:
+    color: '#FDF6E3'
+    background:
+      top-line-color: '#073642'
+      bottom-line-color: '#073642'
+      top-color: '#073642'
+      bottom-color: '#073642'
+        
+server-tree:
+  font-family: 'Lucida Grande'
+  font-size: 11.0
+  background-color: '#002B36'
+  highlight:
+    color: '#CB4B16'
+  newtalk:
+    color: '#859900'
+  unread:
+    color: '#268BD2'
+  normal:
+    active:
+      color: '#586E75'
+    inactive:
+      color: '#586E75'
+  selected:
+    active:
+      color: '#FDF6E3'
+    inactive:
+      color: '#93A1A1'
+    background:
+      top-line-color: '#073642'
+      top-color: '#073642'
+      bottom-line-color: '#073642'
+      bottom-color: '#073642'

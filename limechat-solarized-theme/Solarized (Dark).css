@@ -1,0 +1,222 @@
+/*-----------------------------------------------------------------------------
+  A LimeChat theme by Tad Thorley.
+  Modified by Kenneth Vestergaard.
+-----------------------------------------------------------------------------*/
+
+html {
+  font-family: "Menlo", sans-serif;
+  font-size: 9pt;
+  background-color: #002B36;
+  color: #93A1A1;
+  word-wrap: break-word;
+  margin: 0;
+  padding: 0;
+}
+
+body { margin: 0; padding: 0; }
+
+/* the html tag has these classes and attributes too */
+body.normal {
+  margin-top: 2.0em;
+}
+body[type=channel] {}
+body[type=talk] {}
+body[type=console] {}
+body[channelname=#limechat] {}
+
+hr {
+    margin: 1px 2em;
+    padding: 2px;
+    border: none;
+    background-color: #2aa198;
+    height: 0px;
+    text-align: center;
+}
+a {
+  color: #268BD2;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* lines */
+.line { 
+  padding: 0;
+  margin: 0;
+}
+.line[alternate=even] {}
+.line[alternate=odd] {}
+.line[type=action] {
+  font-style: italic;
+  color: #2AA198;
+}
+.line[type=action] .sender:before {
+  content: ""
+}
+.line[highlight=true] {
+
+}
+.message {
+  margin-left: 8em;
+  margin-right: 5em;
+  display: block;
+}
+.url { word-break: break-all; }
+.address { 
+  text-decoration: underline; 
+  word-break: break-all; 
+}
+.highlight {
+  color: #EEE8D5;
+}
+.event {
+  color: #586E75;
+}
+.event .message {
+  color: #586E75;
+}
+.time {
+  float: right;
+  text-align: left;
+  width: 4em;
+	color: #93A1A1;
+}
+.duptime {
+  display: none;
+}
+/* nickname for text messages */
+body.normal .sender {
+  overflow: hidden;
+  word-wrap: normal;
+  width: 7em;
+  padding-left: 5px;
+  padding-right: 5px;
+  float: left;
+  text-align: right;
+  font-weight: bold;
+}
+.sender[type=myself] {
+  color: #B58900;
+}
+.sender[type=myself] + .message {
+  color: #858900;
+}
+.sender[type=normal] { 
+  color: #859900;
+}
+.sender[type=normal][colornumber='0'] {
+  color: #red;
+}
+.sender[type=normal][colornumber='1'] {
+  color: #636aff;
+}
+.sender[type=normal][colornumber='2'] {
+  color: #00BA00;
+}
+.sender[type=normal][colornumber='3'] {
+  color: #C083F2;
+}
+.sender[type=normal][colornumber='4'] {
+  color: #4DEDF0;
+}
+.sender[type=normal][colornumber='5'] {
+  color: #E422B2;
+}
+.sender[type=normal][colornumber='6'] {
+  color: #EAE87E;
+}
+.sender[type=normal][colornumber='7'] {
+  color: #B8DFFF;
+}
+.sender[type=normal][colornumber='8'] {
+  color: #75A1FB;
+}
+.sender[type=normal][colornumber='9'] {
+  color: #97C74B;
+}
+.sender[type=normal][colornumber='10'] {
+  color: #A5EAC4;
+}
+.sender[type=normal][colornumber='11'] {
+  color: #FFA6A0;
+}
+.sender[type=normal][colornumber='12'] {
+  color: #8E67E7;
+}
+.sender[type=normal][colornumber='13'] {
+  color: #FFBB58;
+}
+.sender[type=normal][colornumber='14'] {
+  color: #EDD7AD;
+}
+.sender[type=normal][colornumber='15'] {
+  color: #FF1676;
+}
+.inlineimage {
+  padding: 0;
+  margin: 0.5em 0;
+}
+
+/* console styles */
+body.console {
+  font-family: "Meslo", "Menlo", "Courier New", monospace;
+  padding: 0px 12px;
+  background-color: #002B36;
+}
+body.console a {
+  color: #268BD2;
+}
+body.console .line {
+  border: none;
+  padding: 0;
+}
+body.console .line[highlight=true] {
+  color: #FFD36A;
+}
+body.console .place {
+  color: #6C71C4;
+}
+body.console .highlight {
+  color: #CB4B16;
+}
+body.console .sender {
+  padding: 0;
+  margin-right: 0.5em;
+  color: #859900;
+}
+body.console .message {
+  margin: 0;
+  padding: 0;
+  display: inline;
+  color: #93A1A1;
+}
+body.console .message[type="quit"], 
+body.console .message[type="join"],
+body.console .message[type="nick"],
+body.console .message[type="topic"],
+body.console .message[type="mode"],
+body.console .message[type="part"],
+body.console .message[type="kill"],
+body.console .message[type="notice"],
+body.console .message[type="invite"] {
+  padding: 0;
+  color: #586E75;
+}
+body.console .time {
+  color: #586E75;
+}
+
+#topic {
+  color: #93a1a1;
+  background-color: #073642;
+  padding: 0.25em 0;
+  margin: 0;
+  min-height: 1.0em;
+  width: 100%;
+  overflow: hidden;
+  cursor: pointer;
+  position: fixed;
+  top: 0;
+  text-align: center;
+}
