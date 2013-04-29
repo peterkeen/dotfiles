@@ -26,9 +26,8 @@ def strip_line(line):
     else:
         return ""
     
-ledger = Popen("ledger reg emily", stdout=PIPE, shell=True)
+ledger = Popen("ledger -w reg emily", stdout=PIPE, shell=True)
 output = ledger.communicate()[0]
-
 
 lines = []
 
