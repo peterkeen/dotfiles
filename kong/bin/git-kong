@@ -4,4 +4,3 @@ set -e
 name=$1
 
 git checkout -b $name origin/master
-marginalia append 401 created branch $name

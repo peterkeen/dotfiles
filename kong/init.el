@@ -6,7 +6,7 @@
 
 (defun kong-start-zeus ()
   (interactive)
-  (ansi-term "/Users/pkeen/dotfiles/kong/bin/zeus-start" "*zeus*"))
+  (ansi-term "~/dotfiles/kong/bin/zeus-start" "zeus"))
 
 (defun kong-console ()
   (interactive)
@@ -45,7 +45,7 @@
 (post-init (lambda ()
   (add-to-list 'compilation-finish-functions 'growl-compilation-result)
   (set-face-font 'default "Meslo LG L 14")
-  (setenv "KONGROOT" "/Users/pkeen/devel/kongregate")
+  (setenv "KONGROOT" (concat (getenv "HOME") "/devel/kongregate"))
 
   (setq message-send-mail-function 'smtpmail-send-it
         smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))

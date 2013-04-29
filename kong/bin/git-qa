@@ -25,7 +25,6 @@ echo "    deploy $review_branch to $server"
 echo "If this is ok, hit enter. Otherwise, ctrl-c"
 read
 
-export SKIP_MARGINALIA_LOGGING=1
 git push origin $branch
 git checkout $review_branch
 git fetch origin
@@ -33,6 +32,5 @@ git reset --hard origin/$review_branch
 git merge $branch
 git push origin $review_branch
 echo "$PWD $branch $server" | konglog DEPLOY
-marginalia dataappend 401 type=deploy branch=$branch server=$server &
 cap ${server}_deploy
 git checkout $branch
