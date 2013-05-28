@@ -14,23 +14,11 @@ if [[ $branch == "HEAD" ]]; then
     branch=`git name-rev --name-only HEAD`
 fi
 
-review_branch=`git config branch.$branch.review-branch 2>/dev/null; true`
-if [[ $review_branch == "" ]]; then
-    review_branch="qa_review"
-fi
-
 echo "Going to do the following:"
-echo "    merge $branch into $review_branch"
-echo "    deploy $review_branch to $server"
+echo "    deploy $branch to $server"
 echo "If this is ok, hit enter. Otherwise, ctrl-c"
 read
 
 git push origin $branch
-git checkout $review_branch
-git fetch origin
-git reset --hard origin/$review_branch
-git merge $branch
-git push origin $review_branch
 echo "$PWD $branch $server" | konglog DEPLOY
 cap ${server}_deploy
-git checkout $branch
