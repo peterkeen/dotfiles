@@ -11,6 +11,8 @@ fi
 alias s="open-story"
 alias today="yesterday today"
 alias summary="kong-summary.rb"
+alias sc="skd 'cd /k/kongregate/current && zeus console'"
+alias sd="skd 'cd /k/kongregate/current && zeus dbconsole'"
 
 function y {
     yesterday | awk '{print $3}' | grep -v master | sort -u
@@ -23,3 +25,14 @@ function t {
 function d {
     grep '\[DEPLOY\]' ~/.konglog
 }
+
+function skd {
+    ssh -t kongdev $*
+}
+
+function skdc {
+    skd "cd /k/kongregate/current && $*"
+}
+
+
+    
