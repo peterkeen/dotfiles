@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-servers = ["kongbus", "kongcab", "kongshred", "kongboat", "kongzep"]
+servers = ["kongbus", "kongcab", "kongshred", "kongboat", "kongzep", "kongjunk", "kongwater", "kongyak"]
 `git fetch --all` #Make sure we're up-to-date
 local_branch = `git rev-parse --abbrev-ref HEAD`
 
