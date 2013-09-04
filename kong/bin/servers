@@ -1,26 +1,35 @@
 #!/usr/bin/env ruby
 
-servers = ["kongbus", "kongcab", "kongshred", "kongboat", "kongzep", "kongjunk", "kongwater", "kongyak"]
-`git fetch --all` #Make sure we're up-to-date
-local_branch = `git rev-parse --abbrev-ref HEAD`
+require 'thread'
 
-infos = servers.map do |server|
-  url = "http://www.#{server}.com"
-  STDERR.write(".")
-  sha = `curl -s #{url}/revision.txt`.strip
-  { hostname: server,
-    branch: `curl -s #{url}/system/branch.html`.strip,
-    author: `git --no-pager show -s --format='%an' #{sha}`.strip,
-    revision: sha,
-    deploy_time: `curl -s #{url}/deploy_time.txt`.split("\n") }
+servers = ["kongbus", "kongcab", "kongshred", "kongboat", "kongzep", "kongjunk", "kongwater", "kongyak"]
+
+infos = Queue.new
+threads = []
+
+STDERR.puts "Contacting servers..."
+servers.each do |server|
+  threads << Thread.new do
+    url = "http://www.#{server}.com"
+    infos << {
+      hostname: server,
+      branch: `curl -s #{url}/system/branch.html`.strip,
+      deploy_time: `curl -s #{url}/deploy_time.txt`.split("\n")
+    }
+  end
 end
-STDERR.write("\n")
-infos.sort do |a,b|
+threads.each { |t| t.join }
+
+server_infos = []
+
+while !infos.empty?
+  server_infos << infos.pop
+end
+
+server_infos.sort do |a,b|
   a[:deploy_time].last.to_f <=> b[:deploy_time].last.to_f
 end.each do |server|
-  puts "#{server[:branch].match(local_branch) ? '*' : ' '} #{server[:hostname]}:",
-       "\tAuthor: #{server[:author]}",
-       "\tDeploy: #{server[:deploy_time].first}",
-       "\tBranch: #{server[:branch]}",
-       "\tCommit: #{server[:revision]}"
+  puts "#{server[:hostname]}:",
+       "\tDeploy: #{server[:deploy_time][0]} #{server[:deploy_time][1]}",
+       "\tBranch: #{server[:branch]}"
 end
