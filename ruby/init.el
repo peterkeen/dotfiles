@@ -4,6 +4,11 @@
 (require-el-get 'rhtml-mode)
 (require-el-get 'textmate)
 (require-el-get 'yaml-mode)
+(require-el-get
+ '(:name flycheck
+         :type git
+         :options ("xzf")
+         :url "https://github.com/flycheck/flycheck.git"))
 
 (post-init (lambda()
   (autoload 'ruby-mode "ruby-mode" nil t)
