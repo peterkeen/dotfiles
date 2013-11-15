@@ -28,11 +28,15 @@ function d {
 }
 
 function skd {
-    ssh -t kongdev $*
+    ssh -q -t kongdev $*
 }
 
 function skdc {
     skd "cd /k/kongregate/current && $*"
+}
+
+function z {
+    skd "cd /k/kongregate/current && zeus $*"
 }
 
 
