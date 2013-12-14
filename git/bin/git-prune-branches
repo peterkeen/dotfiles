@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [[ `git status --porcelain -uno` != "" ]]; then
+    echo "Cannot run on a dirty tree"
+    exit 1
+fi
+
+git checkout master
+git fetch origin && git reset --hard origin/master
+
+for branch in `git branch --merged | grep -P '^  \d'`; do
+    git branch -d $branch
+done
+
+git checkout -

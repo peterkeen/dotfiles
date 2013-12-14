@@ -23,9 +23,15 @@ if [[ $review_branch == "" ]]; then
 fi
 
 slug=`tracker $story_num slug`
-status=`git status --short | wc -l`
+status=""
+if [[ ! -z `git diff-index HEAD` ]]; then
+    echo DIRTY TREE
+    git diff-index HEAD
+    status="dirty"
+fi
 
-if [[ status != "" ]]; then
+if [[ ! -z $status ]]; then
+    echo Status: $status
     git stash
 fi
 git checkout $merge_branch
@@ -33,7 +39,7 @@ git fetch origin && git reset --hard origin/$merge_branch
 git checkout $slug 2>/dev/null || git checkout -b $slug origin/$merge_branch
 git config branch.$slug.merge $merge_branch
 git config branch.$slug.review-branch $review_branch
-if [[ status != "" ]]; then
+if [[ ! -z $status ]]; then
     git stash pop
 fi
 
