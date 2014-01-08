@@ -10,6 +10,19 @@ if [[ $story_num == "" ]]; then
     echo "Usage: git start STORY_NUMBER [MERGE_BRANCH] [REVIEW_BRANCH]"
 fi
 
+branch=`git for-each-ref --format='%(refname:short)' refs/heads/*$story_num*`
+if [[ $branch != "" ]]; then
+    if [[ `echo $branch | wc -l | sed 's/\s//g'` != "1" ]]; then
+        echo "Multiple branches found. Be more specific."
+        echo
+        echo $branch
+        exit 1
+    else
+        git checkout $branch
+        exit 0
+    fi
+fi
+
 if [[ $merge_branch == "" ]]; then
     merge_branch="master"
 fi
