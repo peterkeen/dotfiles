@@ -2,6 +2,30 @@
 (require-el-get 'evil)
 
 (require-el-get
+ '(:name s
+         :type git
+         :options ("xzf")
+         :url "https://github.com/magnars/s.el.git"))
+
+(require-el-get
+ '(:name f
+         :type git
+         :options ("xzf")
+         :url "https://github.com/rejeep/f.el.git"))
+
+(require-el-get
+ '(:name dash
+         :type git
+         :options ("xzf")
+         :url "https://github.com/magnars/dash.el.git"))
+
+(require-el-get
+ '(:name flycheck
+         :type git
+         :options ("xzf")
+         :url "https://github.com/flycheck/flycheck.git"))
+
+(require-el-get
  '(:name ag-mode
          :type git
          :options ("xzf")
@@ -92,7 +116,6 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 
   (with-current-buffer "*scratch*"
     (setq emacs-lock-from-exiting 1)))
-
 
 
 (pre-init (lambda()

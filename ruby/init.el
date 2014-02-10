@@ -4,11 +4,12 @@
 (require-el-get 'rhtml-mode)
 (require-el-get 'textmate)
 (require-el-get 'yaml-mode)
+
 (require-el-get
- '(:name flycheck
+ '(:name rubocop
          :type git
          :options ("xzf")
-         :url "https://github.com/flycheck/flycheck.git"))
+         :url "https://github.com/bbatsov/rubocop-emacs.git"))
 
 (post-init (lambda()
   (autoload 'ruby-mode "ruby-mode" nil t)
@@ -18,7 +19,9 @@
   (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\.ru\\'" . ruby-mode))
+
   (add-hook 'ruby-mode-hook '(lambda ()
+                               (flycheck-mode)
                                (setq ruby-deep-arglist t)
                                (setq ruby-deep-indent-paren nil)
                                (setq c-tab-always-indent nil)
@@ -37,6 +40,7 @@
   (add-hook 'css-mode-hook '(lambda ()
                               (setq css-indent-level 2)
                               (setq css-indent-offset 2)))
+
 
   (setenv "PATH" (concat (getenv "HOME") "/.rbenv/shims:" (getenv "HOME") "/.rbenv/bin:" (getenv "PATH")))
   (setq exec-path (cons (concat (getenv "HOME") "/.rbenv/shims") (cons (concat (getenv "HOME") "/.rbenv/bin") exec-path)))
