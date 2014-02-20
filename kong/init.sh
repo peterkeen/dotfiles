@@ -3,6 +3,7 @@ export GIT_COMMITTER_EMAIL=$EMAIL
 export GIT_AUTHOR_EMAIL=$EMAIL
 export KONGROOT="$HOME/devel/kongregate"
 export SHOW_NOTMUCH_INBOX_COUNT=true
+export BUNDLE_APP_CONFIG="$KONGROOT/.mac-bundle"
 
 if [[ -f $HOME/.kongpass ]]; then
     . ~/.kongpass

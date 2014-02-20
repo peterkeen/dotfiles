@@ -8,7 +8,7 @@ fi
 git checkout master
 git fetch origin && git reset --hard origin/master
 
-for branch in `git branch --merged | grep -P '^  \d'`; do
+for branch in `git branch --merged | grep -E '^  \d'`; do
     git branch -d $branch
 done
 
