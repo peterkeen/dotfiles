@@ -1,3 +1,5 @@
+(require-el-get 'coffee-mode)
+
 (defun kong-test-server ()
   (interactive)
   (multi-term-shell-command
