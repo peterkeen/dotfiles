@@ -20,7 +20,7 @@
 
 (defun kong-run-test-file (file)
   (interactive "MTest File: ")
-  (compile (format "ssh kongdev 'export LC_ALL=en_US.UTF-8 && cd /k/kongregate/current && exec bin/spring testunit %s'" file)))
+  (compile (format "ssh -t kongdev 'bash -l -c \"export LC_ALL=en_US.UTF-8 && cd /k/kongregate/current && exec bin/spring testunit %s --verbose\"'" file)))
 
 (defun kong-run-current-test-file ()
   (interactive)
@@ -28,7 +28,7 @@
 
 (defun kong-run-test-at-point ()
   (interactive)
-  (compile (format "ssh kongdev 'export LC_ALL=en_US.UTF-8 && cd /k/kongregate/current && exec bin/spring testunit %s -n %s'" (kong-current-relative-file-name) (rinari-test-function-name))))
+  (compile (format "ssh -t kongdev 'bash -l -c \"export LC_ALL=en_US.UTF-8 && cd /k/kongregate/current && exec bin/spring testunit %s -n %s --verbose\"'" (kong-current-relative-file-name) (rinari-test-function-name))))
 
 (defun kong-current-relative-file-name ()
   (file-relative-name (buffer-file-name) (getenv "KONGROOT")))
