@@ -28,7 +28,7 @@ function d {
 }
 
 function skd {
-    ssh -q -t kongdev $*
+    ssh -q -t kongdev "bash -c '$*'"
 }
 
 function skdc {

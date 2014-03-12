@@ -2,7 +2,23 @@
 
 require 'thread'
 
-servers = ["kongbus", "kongcab", "kongshred", "kongboat", "kongzep", "kongjunk", "kongwater", "kongyak", "kongregatetrunk", "kongregatestage"]
+servers = [
+  "kongalong",
+  "kongboat",
+  "kongbus",
+  "kongcab",
+  "kongdiddy",
+  "konghaul",
+  "kongice",
+  "kongjunk",
+  "kongluge",
+  "kongshred",
+  "kongwater",
+  "kongyak",
+  "kongzep",
+  "kongregatestage",
+  "kongregatetrunk",
+]
 
 infos = Queue.new
 threads = []

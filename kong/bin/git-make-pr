@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+set -x
+
+this_branch=`git rev-parse --abbrev-ref HEAD`
+merge_branch=`git config branch.${this_branch}.merge`
+
+url="https://github.com/kongregate/kongregate/compare/${merge_branch}...${this_branch}?expand=1"
+
+open "${url}"
