@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+unless ARGV.length >= 2
+  STDERR.puts "Usage: send_fax NUMBER FILENAME..."
+  exit 1
+end
+
+number = ARGV.shift
+api_key = ENV['PHAXIO_API_KEY']
+api_secret = ENV['PHAXIO_API_SECRET']
+
+command_args = ['curl', 'https://api.phaxio.com/v1/send', "-F to=#{number}", "-F api_key=#{api_key}", "-F api_secret=#{api_secret}"]
+
+ARGV.each do |file|
+  command_args << "-F filename[]=@#{file}"
+end
+
+exec command_args.join(" ")
