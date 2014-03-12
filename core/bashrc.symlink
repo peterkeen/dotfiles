@@ -9,7 +9,7 @@ if [[ -f /etc/bashrc ]]; then
     . /etc/bashrc
 fi    
 
-if [[ -L $HOME/.bashrc.local ]] && [[ -f `readlink $HOME/.bashrc.local` ]]; then
+if [[ -f $HOME/.bashrc.local ]]; then
     . $HOME/.bashrc.local
 fi
 
