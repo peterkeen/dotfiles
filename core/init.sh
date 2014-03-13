@@ -1,6 +1,6 @@
 unset PROMPT_COMMAND
-export EDITOR='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=/Applications/Emacs.app/Contents/MacOS/bin:/usr/local/bin:/usr/local/sbin:$PATH
+export EDITOR='emacsclient'
 
 
 __dotfiles_status ()

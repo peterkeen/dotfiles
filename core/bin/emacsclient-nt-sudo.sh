@@ -5,4 +5,4 @@ if [ ! $1 ]; then
     exit 1
 fi
 
-/usr/local/bin/emacsclient -nt /sudo:localhost:$@
+emacsclient -nt /sudo:localhost:$@
