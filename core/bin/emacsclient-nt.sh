@@ -9,4 +9,4 @@ if [ ! $filename ]; then
     filename="~/.scratch/$now-$rand.md"
 fi
 
-/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -nt $filename $@
+/usr/local/bin/emacsclient -nt $filename $@

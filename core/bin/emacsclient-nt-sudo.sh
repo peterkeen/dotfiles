@@ -5,4 +5,4 @@ if [ ! $1 ]; then
     exit 1
 fi
 
-/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -nt /sudo:localhost:$@
+/usr/local/bin/emacsclient -nt /sudo:localhost:$@
