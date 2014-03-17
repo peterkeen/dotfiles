@@ -19,7 +19,7 @@ while(<>) {
 }
 
 if ($linecount > $max_lines_before_opening_buffer) {
-    `/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -ne '(pak-pager "$filename")' 2>&1`;
+    `emacsclient -ne '(pak-pager "$filename")' 2>&1`;
 } else {
     system("cat $filename");
 }
