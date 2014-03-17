@@ -14,7 +14,7 @@ I've changed a few little things:
 To get started:
 
 ```
-$ git clone https://github.com/peterkeen/dotfiles.git
+$ git clone https://www.petekeen.net/source/dotfiles.git
 $ cd dotfiles
 $ rake setup_modules
 $ <edit ~/.modules as appropriate>
