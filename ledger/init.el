@@ -5,6 +5,13 @@
         (sql-user "ledger"))
     (sql-postgres)))
 
+(defun okapi-db ()
+  (interactive)
+  (let ((sql-database "okapi")
+        (sql-server "lionel.local")
+        (sql-user "okapi"))
+    (sql-postgres)))
+
 (require-el-get
  '(:name ledger-new
          :type git
