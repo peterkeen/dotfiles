@@ -114,6 +114,8 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 
   (load "./emacs-lock+")
 
+  (setq vc-follow-symlinks nil)
+
   (with-current-buffer "*scratch*"
     (setq emacs-lock-from-exiting 1)))
 
