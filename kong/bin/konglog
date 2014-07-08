@@ -10,6 +10,8 @@ end
 
 TIME_FORMAT = "%Y-%m-%dT%H:%M:%S"
 
+system("jrnl @konglog @#{tag} #{STDIN.read}")
+
 File.open("#{ENV['HOME']}/.konglog", "a+") do |f|
   STDIN.each do |line|
     now = Time.now.strftime(TIME_FORMAT)
