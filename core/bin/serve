@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+set -o pipefail
+
+python -m SimpleHTTPServer &
+spid=$!
+
+trap "kill -9 $spid; exit" SIGHUP SIGINT SIGTERM
+
+open 'http://localhost:8000'
+
+wait $spid

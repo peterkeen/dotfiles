@@ -1,11 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env ruby
 
-set -e
-set -x
+this_branch = `git rev-parse --abbrev-ref HEAD`.strip
+merge_branch = `git config branch.#{this_branch}.merge`.strip
 
-this_branch=`git rev-parse --abbrev-ref HEAD`
-merge_branch=`git config branch.${this_branch}.merge`
+remote = `git config remote.origin.url`.strip.split(/:/)[1].gsub('.git', '')
 
-url="https://github.com/kongregate/kongregate/compare/${merge_branch}...${this_branch}?expand=1"
+url="https://github.com/#{remote}/compare/#{merge_branch}...#{this_branch}?expand=1"
 
-open "${url}"
+exec("open #{url}")

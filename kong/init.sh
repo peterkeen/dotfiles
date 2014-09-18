@@ -39,5 +39,5 @@ function z {
     skd "cd /k/kongregate/current && zeus $*"
 }
 
-
-    
+# This is for analytics pipeline deploys
+ulimit -n 1024
