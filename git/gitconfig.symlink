@@ -47,3 +47,5 @@
 	upstream = upstream
 	open = true
 	personal = origin
+[credential]
+	helper = osxkeychain
