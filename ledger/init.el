@@ -1,14 +1,14 @@
 (defun ledger-db ()
   (interactive)
   (let ((sql-database "ledger")
-        (sql-server "lionel.local")
+        (sql-server "kodos.zrail.net")
         (sql-user "ledger"))
     (sql-postgres)))
 
 (defun okapi-db ()
   (interactive)
   (let ((sql-database "okapi")
-        (sql-server "lionel.local")
+        (sql-server "kodos.zrail.net")
         (sql-user "okapi"))
     (sql-postgres)))
 
