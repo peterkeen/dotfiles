@@ -4,7 +4,6 @@ export EDITOR='emacsclient'
 
 shopt -s histappend
 shopt -s checkhash
-shopt -s cdspell
 
 export PROMPT_COMMAND='history -a'
 
