@@ -1,0 +1,28 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/Users/peter/dotfiles/" . "ledger/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/Users/peter/dotfiles/ledger/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "init.el"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/Users/peter/dotfiles/ledger/" (21767 18512 0 0) "init.sh" "init.el" "bin/" "../" "./")
+
+ ("/Users/peter/dotfiles/" (21767 19017 0 0) "~/" "theme/" "shell/" "ruby/" "README.md" "Rakefile" "puppet/" "postgresql/" "pager/" "notmuch/" "notes/" "nds/" "markdown/" "mactex/" "limechat-solarized-theme/" "ledger/" "kong/" "go/" "git/" "fax/" "docker/" "deft/" "core/" "backups/" "actionscript/" ".repo.yml" ".gitignore" ".git/" "../" "./")
+
+ ("/Users/peter/" (21767 20659 0 0) "src/" "Public/" "Pictures/" "Music/" "Movies/" "modules" "Library/" "Dropbox/" "Downloads/" "dotfiles/" "Documents/" "Desktop/" ".viminfo" ".Trash/" ".subversion/" ".ssh/" ".profile" ".modules" ".gitconfig" ".gemrc" ".gem/" ".emacs.d/" ".emacs" ".el-get/" ".DS_Store" ".dropbox/" ".CFUserTextEncoding" ".bundler/" ".bashrc" ".bash_profile" ".bash_logout" ".bash_history" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

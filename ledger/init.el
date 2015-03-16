@@ -17,10 +17,8 @@
          :type git
          :options ("xzf")
          :load-path ("lisp")
-         :url "https://github.com/ledger/ledger.git"
-         :autoloads nil))
+         :url "https://github.com/ledger/ledger.git"))
 
 (post-init (lambda ()
-    (load "~/.el-get/ledger-new/lisp/ldg-new")
     (setenv "LEDGER_FILE" "~/financials/ledger.txt")))
 
