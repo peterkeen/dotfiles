@@ -9,7 +9,6 @@ alias vi='emacsclient-nt.sh'
 alias vim='emacsclient-nt.sh'
 alias marginalia="rvm system do marginalia"
 alias okapi='ledger -f /Users/peter/okapi/ledger.txt'
-alias ack=ag
 alias rack=/opt/boxen/homebrew/bin/ack
 
 if [[ `which ag` != "" ]]; then
