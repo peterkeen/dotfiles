@@ -13,7 +13,7 @@ branch = `git symbolic-ref -q HEAD`
 
 exit(1) if not branch
 
-stories = branch.scan(/(\d{8,})/)
+stories = branch.scan(/(\d{3,})/)
 
 if stories.length > 0
   contents = stories.map { |s| "[##{s[0]}]" }.join('') + " " + contents
