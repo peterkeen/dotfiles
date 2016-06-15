@@ -9,6 +9,7 @@ alias vi='emacsclient-nt.sh'
 alias vim='emacsclient-nt.sh'
 alias marginalia="rvm system do marginalia"
 alias okapi='ledger -f /Users/peter/okapi/ledger.txt'
+alias cora='ledger -f /Users/peter/corast/ledger.txt'
 alias rack=/opt/boxen/homebrew/bin/ack
 alias expose=/Users/peter/devel/Expose/expose.sh
 
