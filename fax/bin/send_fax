@@ -1,18 +1,8 @@
-#!/usr/bin/env ruby
+#!/bin/bash
 
-unless ARGV.length >= 2
-  STDERR.puts "Usage: send_fax NUMBER FILENAME..."
-  exit 1
-end
+set -e
+set -x
 
-number = ARGV.shift
-api_key = ENV['PHAXIO_API_KEY']
-api_secret = ENV['PHAXIO_API_SECRET']
+s3cmd put $2 s3://bugsplat-faxes --access_key=$FAX_AWS_ACCESS_KEY_ID --secret_key=$FAX_AWS_SECRET_ACCESS_KEY
 
-command_args = ['curl', 'https://api.phaxio.com/v1/send', "-F to=#{number}", "-F api_key=#{api_key}", "-F api_secret=#{api_secret}"]
-
-ARGV.each do |file|
-  command_args << "-F filename[]=@#{file}"
-end
-
-exec command_args.join(" ")
+curl -X POST https://fax.twilio.com/v1/Faxes --data-urlencode To=$1 --data-urlencode From=+17342010368 -d MediaUrl=https://s3.us-east-2.amazonaws.com/bugsplat-faxes/$(basename $2) -u $TWILIO_ACCOUNT_SID:$TWILIO_API_KEY
