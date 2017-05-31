@@ -13,12 +13,12 @@
     (sql-postgres)))
 
 (require-el-get
- '(:name ledger-new
+ '(:name ledger-new2
          :type git
          :options ("xzf")
-         :load-path ("lisp")
-         :url "https://github.com/ledger/ledger.git"))
+         :url "https://github.com/ledger/ledger-mode.git"))
 
 (post-init (lambda ()
+    (require 'ledger-mode)
     (setenv "LEDGER_FILE" "~/financials/ledger.txt")))
 
