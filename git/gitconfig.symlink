@@ -51,5 +51,6 @@
 	helper = osxkeychain
 [http]
 	postBuffer = 524288000
+	sslVerify = false
 [push]
 	default = matching
