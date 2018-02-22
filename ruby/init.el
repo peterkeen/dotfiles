@@ -20,6 +20,33 @@
   (add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\.ru\\'" . ruby-mode))
 
+  (require 'align)
+
+  (add-to-list 'align-rules-list
+               '(ruby-comma-delimiter
+                 (regexp . ",\\(\\s-*\\)[^# \t\n]")
+                 (repeat . t)
+                 (modes  . '(ruby-mode))))
+
+  (add-to-list 'align-rules-list
+               '(ruby-hash-literal
+                 (regexp . "\\(\\s-*\\)=>\\s-*[^# \t\n]")
+                 (group 2 3)
+                 (repeat . t)
+                 (modes  . '(ruby-mode))))
+
+  (add-to-list 'align-rules-list
+               '(ruby-assignment-literal
+                 (regexp . "\\(\\s-*\\)=\\s-*[^# \t\n]")
+                 (repeat . t)
+                 (modes  . '(ruby-mode))))
+
+  (add-to-list 'align-rules-list
+               '(ruby-xmpfilter-mark
+                 (regexp . "\\(\\s-*\\)# => [^#\t\n]")
+                 (repeat . nil)
+                 (modes  . '(ruby-mode))))
+
   (add-hook 'ruby-mode-hook '(lambda ()
                                (flycheck-mode)
                                (setq ruby-deep-arglist t)
@@ -44,4 +71,37 @@
 
   (setenv "PATH" (concat (getenv "HOME") "/.rbenv/shims:" (getenv "HOME") "/.rbenv/bin:" (getenv "PATH")))
   (setq exec-path (cons (concat (getenv "HOME") "/.rbenv/shims") (cons (concat (getenv "HOME") "/.rbenv/bin") exec-path)))
+
+(require 'align)
+
+(add-to-list 'align-rules-list
+             '(ruby-comma-delimiter
+               (regexp . ",\\(\\s-*\\)[^# \t\n]")
+               (repeat . t)
+               (modes  . '(ruby-mode))))
+
+(add-to-list 'align-rules-list
+             '(ruby-hash-literal
+               (regexp . "\\(\\s-*\\)=>\\s-*[^# \t\n]")
+               (group 2 3)
+               (repeat . t)
+               (modes  . '(ruby-mode))))
+
+(add-to-list 'align-rules-list
+             '(ruby-hash-literal2
+               (regexp . "[a-z0-9]:\\(\\s-*\\)[^# \t\n]")
+               (repeat . t)
+               (modes  . '(ruby-mode))))
+
+(add-to-list 'align-rules-list
+             '(ruby-assignment-literal
+               (regexp . "\\(\\s-*\\)=\\s-*[^# \t\n]")
+               (repeat . t)
+               (modes  . '(ruby-mode))))
+
+(add-to-list 'align-rules-list
+             '(ruby-xmpfilter-mark
+               (regexp . "\\(\\s-*\\)# => [^#\t\n]")
+               (repeat . nil)
+               (modes  . '(ruby-mode))))
 ))
