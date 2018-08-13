@@ -1,8 +1,8 @@
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(aquamacs-additional-fontsets nil t)
  '(aquamacs-customization-version-id 100 t)
  '(c-basic-offset 2)
@@ -28,6 +28,7 @@
  '(current-language-environment "UTF-8")
  '(default-input-method "latin-1-prefix")
  '(display-time-mode t)
+ '(flycheck-rubocop-lint-only t)
  '(grep-find-command "\"ack --nogroup --nocolor -H \"")
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
@@ -36,7 +37,7 @@
  '(midnight-mode t nil (midnight))
  '(notmuch-search-oldest-first nil)
  '(ns-alternate-modifier nil)
- '(ns-command-modifier (quote meta))
+ '(ns-command-modifier (quote meta) t)
  '(org-log-done (quote time))
  '(printer-name "violet")
  '(ps-lpr-command "myprint.sh")
@@ -49,7 +50,24 @@
  '(scroll-conservatively 100)
  '(scroll-margin 2)
  '(tab-width 4)
- '(term-bind-key-alist (quote (("C-c C-c" . term-interrupt-subjob) ("C-p" . previous-line) ("C-n" . next-line) ("C-s" . isearch-forward) ("C-r" . isearch-backward) ("C-m" . term-send-raw) ("M-f" . term-send-forward-word) ("M-b" . term-send-backward-word) ("M-o" . term-send-backspace) ("M-p" . term-send-up) ("M-n" . term-send-down) ("M-M" . term-send-forward-kill-word) ("M-N" . term-send-backward-kill-word) ("M-r" . term-send-reverse-search-history) ("M-," . term-send-input) ("M-." . comint-dynamic-complete))))
+ '(term-bind-key-alist
+   (quote
+    (("C-c C-c" . term-interrupt-subjob)
+     ("C-p" . previous-line)
+     ("C-n" . next-line)
+     ("C-s" . isearch-forward)
+     ("C-r" . isearch-backward)
+     ("C-m" . term-send-raw)
+     ("M-f" . term-send-forward-word)
+     ("M-b" . term-send-backward-word)
+     ("M-o" . term-send-backspace)
+     ("M-p" . term-send-up)
+     ("M-n" . term-send-down)
+     ("M-M" . term-send-forward-kill-word)
+     ("M-N" . term-send-backward-kill-word)
+     ("M-r" . term-send-reverse-search-history)
+     ("M-," . term-send-input)
+     ("M-." . comint-dynamic-complete))))
  '(tool-bar-mode nil)
  '(transient-mark-mode t)
  '(vc-diff-switches (quote ("-U500")))
@@ -58,3 +76,9 @@
  '(visible-bell t))
 
 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

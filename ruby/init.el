@@ -5,12 +5,6 @@
 (require-el-get 'textmate)
 (require-el-get 'yaml-mode)
 
-(require-el-get
- '(:name rubocop
-         :type git
-         :options ("xzf")
-         :url "https://github.com/bbatsov/rubocop-emacs.git"))
-
 (post-init (lambda()
   (autoload 'ruby-mode "ruby-mode" nil t)
   (add-to-list 'auto-mode-alist '("Capfile" . ruby-mode))
