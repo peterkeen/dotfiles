@@ -54,3 +54,5 @@
 	sslVerify = false
 [push]
 	default = matching
+[commit]
+	verbose = true
