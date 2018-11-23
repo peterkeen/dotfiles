@@ -43,7 +43,7 @@
 
   ; Set up the dotfiles path
   (setq user-emacs-directory "~/dotfiles/core/")
-  (add-to-list 'load-path user-emacs-directory)
+  (add-to-list 'load-path "~/dotfiles/core/lisp")
 
   ; Customization messes with init.el by default
   (setq custom-file (concat user-emacs-directory "customization.el"))
@@ -53,7 +53,7 @@
 
   ; el-get goes into .el-get so packages won't pollute this directory
 
-  (load (concat user-emacs-directory "getelget.el"))
+  (load (concat user-emacs-directory "lisp/getelget.el"))
 
   (run-hooks 'post-init-hook))
 

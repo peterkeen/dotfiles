@@ -1,0 +1,7 @@
+#!/bin/bash
+
+now=$(date +'%Y-%m-%d %H:%M:%S')
+
+echo -e "\n## $now\n" >> ~/notes/sparks.md
+
+emacsclient +1000000000 ~/notes/sparks.md
