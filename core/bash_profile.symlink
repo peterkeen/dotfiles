@@ -11,3 +11,5 @@ PATH=$PATH:$HOME/bin
 
 export PATH
 unset USERNAME
+
+export PATH="$HOME/.cargo/bin:$PATH"
