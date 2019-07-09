@@ -1,6 +1,5 @@
 (require-el-get 'ruby-mode)
 (require-el-get 'inf-ruby)
-(require-el-get 'rinari)
 (require-el-get 'rhtml-mode)
 (require-el-get 'textmate)
 (require-el-get 'yaml-mode)
