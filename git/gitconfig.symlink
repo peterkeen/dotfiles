@@ -32,6 +32,7 @@
     compression = 9
     preloadindex = true
 	excludesfile = /Users/pkeen/.gitignore
+	quotepath = false
 [gc]
     pruneExpire = 6 months ago
     aggressiveWindow = 20
