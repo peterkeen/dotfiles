@@ -1,3 +1,3 @@
-export GOROOT=/usr/local/go
-export GOPATH=~/gocode
-export PATH=$PATH:$GOPATH/bin
+export GOPATH="${HOME}/.go"
+export GOROOT="$(brew --prefix golang)/libexec"
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
