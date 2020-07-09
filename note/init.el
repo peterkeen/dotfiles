@@ -1,0 +1,7 @@
+(defun pak-goto-end-of-devlog ()
+  (find-file "/Users/pete/notes/devlog.md")
+  (git-auto-commit-mode t)
+  (visual-line-mode t)
+  (setq gac-automatically-push-p 't)
+  (setq gac-debounce-interval 30)
+  (end-of-buffer))

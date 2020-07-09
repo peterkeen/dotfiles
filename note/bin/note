@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+require 'time'
+
+NOTE_FILE = File.join(ENV['HOME'], "notes", "devlog.md")
+
+hostname = `hostname`.strip
+now = Time.now.strftime("%Y-%m-%d %A %H:%M:%S")
+
+note = ARGV.join(' ')
+
+contents = %Q{
+
+#### #{now}
+> #{hostname}:#{Dir.pwd}
+
+#{note}}
+
+File.open(NOTE_FILE, "a+") do |file|
+  file.write(contents)
+end
+
+Dir.chdir File.dirname(NOTE_FILE) do
+  system("git add devlog.md && git commit -m devlog.md")
+  system(%Q{emacsclient -nt -e '(pak-goto-end-of-devlog)'})
+  system("git push origin master")
+end
