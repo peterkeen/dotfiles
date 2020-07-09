@@ -22,6 +22,6 @@ end
 
 Dir.chdir File.dirname(NOTE_FILE) do
   system("git add devlog.md && git commit -m devlog.md")
-  system(%Q{emacsclient -nt -e '(pak-goto-end-of-devlog)'})
+  system(%Q{emacsclient -n -e '(pak-goto-end-of-devlog)'})
   system("git push origin master")
 end
