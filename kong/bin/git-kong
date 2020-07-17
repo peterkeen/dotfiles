@@ -1,6 +1,0 @@
-#!/bin/bash
-
-set -e
-name=$1
-
-git checkout -b $name origin/master

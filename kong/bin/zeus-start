@@ -1,3 +1,0 @@
-#!/bin/bash
-
-ssh -t kongdev "cd /k/kongregate/current && zeus start"
