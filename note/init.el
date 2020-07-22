@@ -1,3 +1,5 @@
+(markdown-toggle-wiki-links t)
+
 (defun pak-goto-end-of-devlog ()
   (find-file (expand-file-name "~/notes/devlog.md"))
   (git-auto-commit-mode t)
