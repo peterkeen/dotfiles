@@ -47,7 +47,6 @@
                                (setq ruby-deep-indent-paren nil)
                                (setq c-tab-always-indent nil)
                                (require 'inf-ruby)
-                               (require 'ruby-compilation)
                                (define-key ruby-mode-map (kbd "M-r") 'run-rails-test-or-ruby-buffer)))
   (autoload 'rhtml-mode "rhtml-mode" nil t)
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . rhtml-mode))

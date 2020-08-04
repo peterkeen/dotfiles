@@ -1,4 +1,8 @@
-(require-el-get 'deft)
+(require-el-get 
+ '(:name deft-github
+         :type git
+         :options ("xzf")
+         :url "https://github.com/jrblevin/deft.git"))
 
 (post-init (lambda()
   (setq deft-extension "md")
