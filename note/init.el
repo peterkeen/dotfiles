@@ -4,6 +4,6 @@
   (visual-line-mode t)
   (auto-revert-mode t)
   (markdown-toggle-wiki-links t)
-  (setq gac-automatically-push-p 't)
+  (setq gac-automatically-push-p 'f)
   (setq gac-debounce-interval 30)
   (end-of-buffer))
