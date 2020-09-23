@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+WORK_TIME = 25*60
+BREAK_TIME = 5*60
+
+num_rounds = ARGV[0]
+
+if num_rounds.nil?
+  puts "Usage: pomodoro [num rounds]"
+  exit 1
+end
+
+num_rounds = num_rounds.to_i
+
+(0..num_rounds).each do |round|
+  puts "starting focus time round #{round}"
+  system %Q{note On pomodoro round #{round} I plan to...}
+
+  sleep WORK_TIME
+
+  system %Q{osascript -e 'display alert "Pomo round #{round} done!" message "What did you do with your focus time?"'}
+  system %Q{note On pomodoro round #{round} I did...}
+
+  break if num_rounds == round + 1
+
+  puts "break time!"
+  sleep BREAK_TIME
+  system %Q{osascript -e 'display alert "back to work!" message "Starting round #{round + 1}"'}
+end
+
+puts "Good work!"
