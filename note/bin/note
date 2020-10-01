@@ -7,7 +7,11 @@ NOTE_FILE = File.join(ENV['HOME'], "notes", "devlog.md")
 hostname = `hostname`.strip
 now = Time.now.strftime("%Y-%m-%d %A %H:%M:%S")
 
-note = ARGV.join(' ')
+if ARGV.length > 0
+  note = ARGV.join(' ')
+else
+  note = STDIN.read
+end
 
 contents = %Q{
 

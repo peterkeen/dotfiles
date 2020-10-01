@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'bundler/setup'
+require 'redcarpet'
+require 'time'
+
+ENV['TZ'] = 'US/Eastern'
+
+class Analyzer < Redcarpet::Render::Base
+  def doc_header
+    @entry_count = 0
+    ''
+  end
+
+  def header(text, header_level)
+    if header_level == 4
+      date = Time.parse(text).to_datetime
+      @entry_count += 1
+    end
+
+    ''
+  end
+
+  def doc_footer
+    puts "Num entries: #{@entry_count}"
+    ''
+  end
+end
+
+md = Redcarpet::Markdown.new(Analyzer)
+
+md.render(File.read(File.expand_path("~/notes/devlog.md")))

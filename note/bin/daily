@@ -1,0 +1,11 @@
+#!/bin/bash
+
+note <<EOF
+Start of Day Checklist
+
+* [ ] review yesterday's EOD state dump
+* [ ] review [jira][]
+* [ ] plan the day
+* [ ] post in [cloud-team-standups][]
+
+EOF
