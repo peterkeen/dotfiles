@@ -8,6 +8,12 @@ export LANG="en_US.UTF-8"
 shopt -s histappend
 shopt -s checkhash
 
+export HISTSIZE=
+export HISTFILESIZE=
+export HISTTIMEFORMAT="[%F %T] "
+export HISTFILE=~/.bash_eternal_history
+export HISTCONTROL=erasedups
+
 export PROMPT_COMMAND='history -a'
 
 __dotfiles_status ()
@@ -24,3 +30,4 @@ __dotfiles_status ()
 
 . ~/dotfiles/core/aliases.sh
 [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
+
