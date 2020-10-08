@@ -5,7 +5,20 @@ Start of Day Checklist
 
 * [ ] review yesterday's EOD state dump
 * [ ] review [jira][]
+* [ ] review calendar
+* [ ] review email and (important) slack
 * [ ] plan the day
 * [ ] post in [cloud-team-standups][]
+
+Daily plan
+
+* [ ] a
+* [ ] b
+* [ ] c
+
+Standup Status
+
+y: abc
+t: def
 
 EOF
