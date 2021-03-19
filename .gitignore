@@ -12,3 +12,4 @@ core/url
 core/tramp
 core/ido.last
 *_ext/
+configstore

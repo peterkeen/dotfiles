@@ -1,0 +1,15 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    rake (13.0.1)
+    redcarpet (3.5.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  rake
+  redcarpet
+
+BUNDLED WITH
+   2.1.2
