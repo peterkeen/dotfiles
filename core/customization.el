@@ -32,6 +32,7 @@
  '(grep-find-command "\"ack --nogroup --nocolor -H \"")
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
+ '(js-indent-level 2)
  '(linum-format '"%6d ")
  '(make-backup-files nil)
  '(midnight-mode t nil (midnight))
@@ -50,7 +51,8 @@
  '(scroll-bar-mode nil)
  '(scroll-conservatively 100)
  '(scroll-margin 2)
- '(tab-width 4)
+ '(standard-indent 2)
+ '(tab-width 2)
  '(term-bind-key-alist
    '(("C-c C-c" . term-interrupt-subjob)
      ("C-p" . previous-line)
