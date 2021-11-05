@@ -14,6 +14,8 @@ export HISTTIMEFORMAT="[%F %T] "
 export HISTFILE=~/.bash_eternal_history
 export HISTCONTROL=erasedups
 
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 export PROMPT_COMMAND='history -a'
 
 __dotfiles_status ()
