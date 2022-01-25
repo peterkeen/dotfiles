@@ -9,4 +9,5 @@
   (setq deft-directory "~/notes")
   (setq deft-text-mode 'markdown-mode)
   (setq deft-use-filename-as-title nil)
+  (setq deft-use-filter-string-for-filename t)
 ))

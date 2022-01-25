@@ -1,5 +1,4 @@
 (require-el-get 'undo-tree)
-(require-el-get 'evil)
 
 (require-el-get
  '(:name s

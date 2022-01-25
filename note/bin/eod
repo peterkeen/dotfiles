@@ -3,7 +3,6 @@
 note <<EOF
 End of Day Checklist
 
-* [ ] review [jira][]
 * [ ] review daily plan
 * [ ] Write a state dump with TODOs for tomorrow/monday
 

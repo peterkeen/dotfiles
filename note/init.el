@@ -5,6 +5,7 @@
          :url "https://github.com/ChillarAnand/real-auto-save.git"))
 
 (defun pak-goto-end-of-devlog ()
+  (interactive)
   (find-file (expand-file-name "~/notes/devlog.md"))
   (git-auto-commit-mode t)
   (visual-line-mode t)
