@@ -23,12 +23,12 @@
   "system": {
     "macos": {
       "monterey": {
-        "HOMEBREW_VERSION": "3.3.11",
-        "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "8b2680ab9e567b362d857566ed5327792e6af07e",
+        "HOMEBREW_VERSION": "3.3.15",
+        "HOMEBREW_PREFIX": "/opt/homebrew",
+        "Homebrew/homebrew-core": "765c41b1e4b5e9201a6ea0a207c2a8c77c600578",
         "CLT": "13.0.0.0.1.1627064638",
-        "Xcode": "13.1",
-        "macOS": "12.1"
+        "Xcode": "13.2.1",
+        "macOS": "12.2"
       }
     }
   }

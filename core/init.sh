@@ -30,6 +30,8 @@ __dotfiles_status ()
     fi
 }
 
-. ~/dotfiles/core/aliases.sh
 [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
 
+[ -f /opt/homebrew/bin/brew ] && eval $(/opt/homebrew/bin/brew shellenv)
+
+. ~/dotfiles/core/aliases.sh

@@ -31,7 +31,7 @@
     sharedRepository = group
     compression = 9
     preloadindex = true
-	excludesfile = /Users/pkeen/.gitignore
+	excludesFile = ~/.gitignore
 	quotepath = false
 [gc]
     pruneExpire = 6 months ago
