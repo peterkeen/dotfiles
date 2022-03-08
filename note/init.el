@@ -1,5 +1,10 @@
 (require-el-get 'git-auto-commit-mode)
-(require-el-get 'real-auto-save)
+
+(require-el-get
+ '(:name real-auto-save
+         :type git
+         :options ("xzf")
+         :url "https://github.com/ChillarAnand/real-auto-save.git"))
 
 (defun pak-goto-end-of-devlog ()
   (interactive)
