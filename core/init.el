@@ -1,4 +1,5 @@
 (require-el-get 'undo-tree)
+(require-el-get 'ace-window)
 
 (require-el-get
  '(:name s
@@ -110,6 +111,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
   (global-set-key "\C-cfb" 'embiggen-font)
   (global-set-key "\C-cfr" 'recromulate-font)
   (global-set-key "\C-cfp" 'find-file-at-point)
+  (global-set-key "\C-xo" 'ace-window)
 
   (load "./emacs-lock+")
 
