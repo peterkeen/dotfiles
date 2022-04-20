@@ -1,12 +1,13 @@
 #!/bin/sh
 
+path=`readlink -f ${@}`
+
+if [  ! -z "${SSH_CLIENT}" ]; then
+    echo $path
+    exec ssh -p 8022 -t peter@localhost emacsclient-nt.sh /ssh:testing:$path
+fi
+
 filename=$1
 shift
-
-if [ ! $filename ]; then
-    rand=`head -c100 /dev/urandom | md5`
-    now=`date '+%Y%m%d-%H%M%S'`
-    filename="~/.scratch/$now-$rand.md"
-fi
 
 emacsclient -n $filename $@
