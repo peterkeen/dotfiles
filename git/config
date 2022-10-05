@@ -57,3 +57,5 @@
 	default = matching
 [commit]
 	verbose = true
+[fetch]
+	prune = true
