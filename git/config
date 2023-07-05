@@ -1,6 +1,7 @@
 [user]
 	name = Pete Keen
 	email = pete@petekeen.net
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO05unl8ePSzQOKYdFtjCCxD9vq8BceqMuHSg9rUYmLP
 
 [alias]
     alias = "!sh -c '[ $# = 2 ] && git config --global alias.\"$1\" \"$2\" && exit 0 || echo \"usage: git alias <new alias> <original command>\" >&2 && exit 1' -"
@@ -57,5 +58,16 @@
 	default = matching
 [commit]
 	verbose = true
+  gpgsign = true  
 [fetch]
 	prune = true
+
+[user]
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+	allowedSignersFile = /Users/pete/.ssh/allowed_signers
+

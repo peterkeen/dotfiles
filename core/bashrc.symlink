@@ -25,3 +25,7 @@ export TERM=xterm-256color
 
 umask 0002
 mesg n
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/pete/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
