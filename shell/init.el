@@ -1,5 +1,3 @@
-(require-el-get '(:name multi-term))
-
 (defun sh1 ()
   (interactive)
   (my-shell 1))
@@ -21,12 +19,6 @@
   (interactive "nSwitch to sh #:")
   (my-shell arg))
 
-(defun multi-term-shell-command (command buffername)
-  (let ((multi-term-program (format "%s/bin/multi-term-helper.sh" (getenv "HOME"))))
-    (setenv "MULTI_TERM_PROGRAM" command)
-    (multi-term)
-    (rename-buffer buffername)))
-
 (defun term-stuff-init ()
   (global-unset-key (kbd "C-z"))
   (global-set-key (kbd "C-z z") 'my-shell)
@@ -40,7 +32,6 @@
   (global-set-key (kbd "C-z 8") '(lambda () (interactive) (my-shell 8)))
   (global-set-key (kbd "C-z 9") '(lambda () (interactive) (my-shell 9)))
 
-  (setq multi-term-program "/bin/bash")
   (server-start))
 
 (post-init 'term-stuff-init)
