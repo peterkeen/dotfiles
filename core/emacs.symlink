@@ -5,17 +5,12 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
+(add-to-list 'package-archives
+             '("MELPA Stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
-(defun require-el-get (package)
-  "Add a package to el-get-sources"
-  (add-to-list 'el-get-sources package))
-
-(defvar pre-init-hook '()
-  "Run before el-get packages are installed")
-
 (defvar post-init-hook '()
-  "Run after el-get packages are installed")
+  "Run after init")
 
 (defun pre-init (func)
   (add-hook 'pre-init-hook func t))
@@ -30,9 +25,6 @@
 
 (defun re-initialize-modules ()
   (interactive)
-  (setq el-get-sources '(el-get))
-  (setq el-get-packages '())
-  (setq el-get-dir "~/.el-get/")
 
   (setq module-list (read-lines "~/.modules"))
 
@@ -48,12 +40,6 @@
   ; Customization messes with init.el by default
   (setq custom-file (concat user-emacs-directory "customization.el"))
   (load custom-file 'noerror)
-
-  (run-hooks 'pre-init-hook)
-
-  ; el-get goes into .el-get so packages won't pollute this directory
-
-  (load (concat user-emacs-directory "lisp/getelget.el"))
 
   (run-hooks 'post-init-hook))
 

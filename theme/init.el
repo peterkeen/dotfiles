@@ -1,15 +1,14 @@
-(require-el-get '(:name color-theme-solarized))
+(use package solarized-theme))
 
 (defun night ()
   (interactive)
-  (color-theme-solarized-dark))
+  (load-theme 'solarized-dark))
 
 (defun day ()
   (interactive)
-  (color-theme-solarized-light))
+  (load-theme 'solarized-light))
 
 (defun theme-init ()
   (day))
-
 
 (post-init 'theme-init)

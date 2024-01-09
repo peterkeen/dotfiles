@@ -1,4 +1,4 @@
-(require-el-get 'markdown-mode)
+(use-package markdown-mode)
 
 (post-init (lambda ()
   (setq auto-mode-list

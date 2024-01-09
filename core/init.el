@@ -1,35 +1,6 @@
-(require-el-get 'undo-tree)
-(require-el-get 'ace-window)
-
-(require-el-get
- '(:name s
-         :type git
-         :options ("xzf")
-         :url "https://github.com/magnars/s.el.git"))
-
-(require-el-get
- '(:name f
-         :type git
-         :options ("xzf")
-         :url "https://github.com/rejeep/f.el.git"))
-
-(require-el-get
- '(:name dash
-         :type git
-         :options ("xzf")
-         :url "https://github.com/magnars/dash.el.git"))
-
-(require-el-get
- '(:name flycheck
-         :type git
-         :options ("xzf")
-         :url "https://github.com/flycheck/flycheck.git"))
-
-(require-el-get
- '(:name ag-mode
-         :type git
-         :options ("xzf")
-         :url "https://github.com/Wilfred/ag.el.git"))
+(use-package undo-tree)
+(use-package ace-window)
+(use-package flycheck)
 
 (require 'cl)
 
@@ -77,12 +48,14 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
     (setenv "PATH" path-from-shell)
     (setq exec-path (split-string path-from-shell path-separator))))
 
-
-
 (defun core-init ()
   (require 'pcomplete)
   (require 'uniquify)
   (require 'ibuffer)
+
+  (setq start-time (current-time)) ; for M-x uptime
+  (setq ring-bell-function (lambda () (message "*beep*")))
+  (setq ns-command-modifier 'meta) ; this is *super important*
 
   (set-exec-path-from-shell-PATH)
 
@@ -120,11 +93,4 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
   (with-current-buffer "*scratch*"
     (setq emacs-lock-from-exiting 1)))
 
-
-(pre-init (lambda()
-  (setq start-time (current-time)) ; for M-x uptime
-  (setq ring-bell-function (lambda () (message "*beep*")))
-  (setq ns-command-modifier 'meta) ; this is *super important*
-))
-  
 (post-init 'core-init)
